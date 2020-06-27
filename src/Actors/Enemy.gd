@@ -9,9 +9,13 @@ enum State {
 
 export(bool) var does_move = true
 export(bool) var does_jump = false
+export(bool) var does_chase = true
 export(int) var max_health  = 1000
+export(float) var chase_speed = 1.5
+export(float) var jump_speed = 1.5
 var health = max_health
 var jumping = false;
+var saved_velocity_x = 0
 
 var _state = State.WALKING
 
@@ -23,6 +27,8 @@ onready var animation_player = $AnimationPlayer
 onready var healthbar = $HealthDisplay
 onready var jump_timer = $JumpTimer
 
+#player object on detection for chasing.
+var player = null
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
@@ -65,15 +71,34 @@ func _physics_process(_delta):
 # If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
 func calculate_move_velocity(linear_velocity):
 	var velocity = linear_velocity
+			
+	# Follow player correctly
+	if player && does_chase && is_on_floor():
+		saved_velocity_x = (position.direction_to(player.position) * chase_speed*speed).x
 	
-	if does_jump && jumping:
-		velocity.y = -speed.y
-		jumping = false;
-
-	if not floor_detector_left.is_colliding():
-		velocity.x = speed.x
-	elif not floor_detector_right.is_colliding():
-		velocity.x = -speed.x
+	if does_jump:
+		if !jumping:
+			#Velocity should only depend on if we are in the air or not.
+			if is_on_floor():
+				if velocity.x != 0:
+					saved_velocity_x = velocity.x
+					velocity.x = 0;
+		else:
+			#if we did jump, boost in air
+			velocity.y = -speed.y*jump_speed
+			jumping = false;
+			
+			if not floor_detector_left.is_colliding():
+				velocity.x = speed.x
+			elif not floor_detector_right.is_colliding():
+				velocity.x = -speed.x
+			else:
+				velocity.x = saved_velocity_x
+	else:
+		if not floor_detector_left.is_colliding():
+			velocity.x = speed.x
+		elif not floor_detector_right.is_colliding():
+			velocity.x = -speed.x
 
 	if is_on_wall():
 		velocity.x *= -1
@@ -109,3 +134,14 @@ func jump():
 func _on_JumpTimer_timeout():
 	jump()
 
+
+
+func _on_DetectRadius_body_entered(body):
+	if body is Player:
+		player = body
+
+
+func _on_DetectRadius_body_exited(body):
+	if body == player:
+		player = null
+		_velocity.x = speed.x*sign(_velocity.x)

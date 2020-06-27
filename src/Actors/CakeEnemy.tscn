@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/Enemy/cakeframes.tres" type="SpriteFrames" id=2]
 
 [node name="CakeEnemy" instance=ExtResource( 1 )]
+does_jump = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="11"]
 position = Vector2( 4, -16 )
