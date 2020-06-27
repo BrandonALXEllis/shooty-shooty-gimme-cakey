@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/theme/art/tileset/industrial_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Platforms/Platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Level/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/audio/music/music.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/music/1BITTopDownMusics - Track 01 (1BIT Adventure).wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/theme/art/platforms/moving_platform.png" type="Texture" id=7]
 [ext_resource path="res://src/Level/Music.gd" type="Script" id=9]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=13]
@@ -221,6 +220,7 @@ position = Vector2( 16, 0 )
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 707, 400 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform"]
@@ -229,6 +229,7 @@ playback_process_mode = 0
 anims/move = SubResource( 2 )
 
 [node name="Platform2" parent="Platforms" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -47, 80 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform2"]
@@ -237,6 +238,7 @@ playback_process_mode = 0
 anims/move = SubResource( 3 )
 
 [node name="PlatformStatic" type="StaticBody2D" parent="Platforms"]
+visible = false
 position = Vector2( 569.935, 105.877 )
 rotation = 0.355618
 z_index = -1
@@ -257,60 +259,6 @@ polygon = PoolVector2Array( -129.699, 9.94633, -47, -10.5, 8, -7, 10, -1.5, -46.
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 271.04, 245.639 )
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 346.109, 48.5631 )
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 632.725, 78.5545 )
-
-[node name="Enemy4" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 828.515, 77.262 )
-
-[node name="Enemy5" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 479.993, 615.716 )
-
-[node name="Enemy6" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 508.553, 518.929 )
-
-[node name="Enemy7" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 598.993, 455.462 )
-
-[node name="Enemy8" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 572.02, 596.676 )
-
-[node name="Enemy9" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 776.7, 423.729 )
-
-[node name="Enemy10" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 810.021, 360.262 )
-
-[node name="Enemy11" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 849.688, 423.729 )
-
-[node name="Enemy12" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 411.766, 550.663 )
-
-[node name="Enemy13" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 676.74, 549.076 )
-
-[node name="Enemy14" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 629.14, 582.396 )
-
-[node name="Enemy15" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 740.207, 415.795 )
-
-[node name="Enemy16" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 824.301, 430.076 )
-
-[node name="Enemy17" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 556.153, 460.222 )
-
-[node name="Enemy18" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 635.487, 455.462 )
-
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -325,4 +273,4 @@ position = Vector2( 90, 546 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 1638415, 0, 22, 1703951, 0, 22, 1769487, 0, 22, 1835023, 0, 22, 1900559, 0, 22, 1966086, 0, 18, 1966087, 0, 18, 1966088, 0, 18, 1966089, 0, 18, 1966095, 0, 22, 2031631, 0, 22, 2097166, 0, 18, 2097167, 0, 65555, 2097168, 0, 18, 2162688, 0, 18, 2162689, 0, 18, 2162690, 0, 18, 2162691, 0, 18, 2162692, 0, 18, 2162697, 0, 18, 2162698, 0, 18, 2162699, 0, 18, 2162700, 0, 18, 2162703, 0, 8, 2228239, 0, 8, 2293768, 0, 196631, 2293769, 0, 196633, 2293775, 0, 8, 2359304, 0, 17, 2359305, 0, 16, 2359307, 0, 14, 2359308, 0, 14, 2359309, 0, 14, 2359311, 0, 8, 2424840, 0, 17, 2424841, 0, 16, 2424843, 0, 19, 2424844, 0, 21, 2424845, 0, 19, 2424847, 0, 8, 2424849, 0, 65540, 2424850, 0, 65543, 2424851, 0, 65537, 2490372, 0, 65546, 2490373, 0, 65544, 2490374, 0, 65545, 2490375, 0, 65546, 2490376, 0, 65547, 2490377, 0, 14, 2490378, 0, 14, 2490379, 0, 21, 2490380, 0, 19, 2490381, 0, 21, 2490383, 0, 8 )
+tile_data = PoolIntArray( 0, 0, 0, 1638415, 0, 22, 1703951, 0, 22, 1769487, 0, 22, 1835023, 0, 22, 1900559, 0, 22, 1966086, 0, 18, 1966087, 0, 18, 1966088, 0, 18, 1966089, 0, 18, 1966095, 0, 22, 2031631, 0, 22, 2097166, 0, 18, 2097167, 0, 65555, 2097168, 0, 18, 2162688, 0, 18, 2162689, 0, 18, 2162690, 0, 18, 2162691, 0, 18, 2162692, 0, 18, 2162697, 0, 18, 2162698, 0, 18, 2162699, 0, 18, 2162700, 0, 18, 2162703, 0, 8, 2228239, 0, 8, 2293768, 0, 196631, 2293769, 0, 196633, 2293775, 0, 8, 2359304, 0, 17, 2359305, 0, 16, 2359307, 0, 14, 2359308, 0, 14, 2359309, 0, 14, 2359311, 0, 8, 2424840, 0, 17, 2424841, 0, 16, 2424843, 0, 19, 2424844, 0, 21, 2424845, 0, 19, 2424847, 0, 8, 2424849, 0, 65540, 2424850, 0, 65543, 2424851, 0, 18, 2424852, 0, 18, 2424853, 0, 18, 2424854, 0, 18, 2424855, 0, 18, 2424856, 0, 18, 2424857, 0, 18, 2424858, 0, 18, 2424859, 0, 18, 2424860, 0, 18, 2424861, 0, 18, 2424862, 0, 18, 2424863, 0, 18, 2424864, 0, 18, 2424865, 0, 18, 2424866, 0, 18, 2424867, 0, 18, 2424868, 0, 18, 2424869, 0, 18, 2424870, 0, 18, 2424871, 0, 18, 2424872, 0, 18, 2424873, 0, 18, 2424874, 0, 18, 2424875, 0, 18, 2424876, 0, 18, 2424877, 0, 18, 2424878, 0, 18, 2424879, 0, 18, 2424880, 0, 18, 2424881, 0, 18, 2424882, 0, 18, 2424883, 0, 18, 2424884, 0, 18, 2424885, 0, 18, 2424886, 0, 18, 2424887, 0, 18, 2424888, 0, 18, 2424889, 0, 18, 2424890, 0, 18, 2424891, 0, 18, 2424892, 0, 18, 2424893, 0, 18, 2424894, 0, 18, 2424895, 0, 18, 2424896, 0, 18, 2424897, 0, 18, 2424898, 0, 18, 2424899, 0, 18, 2424900, 0, 18, 2424901, 0, 18, 2424902, 0, 18, 2424903, 0, 18, 2424904, 0, 18, 2424905, 0, 18, 2424906, 0, 18, 2424907, 0, 18, 2424908, 0, 18, 2424909, 0, 18, 2424910, 0, 18, 2424911, 0, 18, 2424912, 0, 18, 2424913, 0, 18, 2490372, 0, 65546, 2490373, 0, 65544, 2490374, 0, 65545, 2490375, 0, 65546, 2490376, 0, 65547, 2490377, 0, 14, 2490378, 0, 14, 2490379, 0, 21, 2490380, 0, 19, 2490381, 0, 21, 2490383, 0, 8, 2490412, 0, 18, 2490413, 0, 18, 2490414, 0, 18, 2490415, 0, 18, 2490416, 0, 18, 2490417, 0, 18, 2490424, 0, 18 )
