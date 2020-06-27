@@ -10,6 +10,8 @@ enum State {
 export(bool) var does_move = true
 export(bool) var does_jump = false
 export(int) var max_health  = 1000
+export(int) var score_per_hit = 10
+export(int) var score_destroy_bonus = 1000
 var health = max_health
 var jumping = false;
 
@@ -87,7 +89,9 @@ func calculate_move_velocity(linear_velocity):
 func damage(amount):
 	health -= amount
 	healthbar.update_healthbar(health)
+	Score.increment_score(score_per_hit)
 	if health <=0:
+		Score.increment_score(score_destroy_bonus)
 		self.destroy()
 
 func destroy():
