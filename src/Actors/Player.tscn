@@ -224,9 +224,8 @@ script = ExtResource( 11 )
 position = Vector2( 0, -14 )
 z_index = 1
 frames = ExtResource( 2 )
-animation = "fall"
 playing = true
-offset = Vector2( 8, -1 )
+offset = Vector2( 8, -2 )
 
 [node name="Gun" type="Position2D" parent="Sprite"]
 position = Vector2( 14, 1 )

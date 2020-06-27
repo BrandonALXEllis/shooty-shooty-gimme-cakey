@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/theme/art/coin/coin.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/sfx/coin_pickup.wav" type="AudioStream" id=3]
-[ext_resource path="res://src/Objects/Coin.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/sfx/coin_pickup.wav" type="AudioStream" id=1]
+[ext_resource path="res://src/Objects/Heart.gd" type="Script" id=2]
+[ext_resource path="res://assets/theme/art/Health/heart1.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "picked"
@@ -139,15 +139,14 @@ tracks/3/keys = {
 [sub_resource type="CircleShape2D" id=3]
 radius = 5.0
 
-[node name="Coin" type="Area2D"]
-monitoring = false
+[node name="HeartBig" type="Area2D"]
 monitorable = false
 collision_layer = 0
-script = ExtResource( 4 )
+script = ExtResource( 2 )
+health = 100
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-hframes = 4
+texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spinning"
@@ -159,5 +158,5 @@ anims/spinning = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Pickup" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

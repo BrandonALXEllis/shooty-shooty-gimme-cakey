@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/theme/art/tileset/industrial_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/PresentEnemy.tscn" type="PackedScene" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/audio/music/1BITTopDownMusics - Track 01 (1BIT Adventure).wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/theme/art/platforms/moving_platform.png" type="Texture" id=7]
+[ext_resource path="res://src/Objects/HeartBig.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Level/Music.gd" type="Script" id=9]
+[ext_resource path="res://src/Objects/HeartSmall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=13]
 
 [sub_resource type="GDScript" id=1]
@@ -218,6 +220,12 @@ position = Vector2( -16, 0 )
 [node name="Coin3" parent="Coins/CoinsHorizontal5" instance=ExtResource( 5 )]
 position = Vector2( 16, 0 )
 
+[node name="HeartBig" parent="Coins" instance=ExtResource( 8 )]
+position = Vector2( 597.965, 580.467 )
+
+[node name="HeartSmall" parent="Coins" instance=ExtResource( 10 )]
+position = Vector2( 619.021, 580.321 )
+
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 3 )]
@@ -261,7 +269,7 @@ polygon = PoolVector2Array( -129.699, 9.94633, -47, -10.5, 8, -7, 10, -1.5, -46.
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 2 )]
-position = Vector2( 204.146, 445.648 )
+position = Vector2( 494.804, 531.537 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 

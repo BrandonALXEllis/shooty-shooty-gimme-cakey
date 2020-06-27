@@ -145,3 +145,7 @@ func get_new_animation(is_shooting = false):
 func _on_GhostSpacing_timeout():
 	if dash:
 		ghost_spawn.shoot(sprite)
+		
+func increment_health(amount):
+	print("Added health ", amount)
+	#TODO: add the health to the health bar
