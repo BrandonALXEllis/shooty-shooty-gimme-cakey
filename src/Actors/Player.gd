@@ -3,7 +3,9 @@ extends Actor
 
 
 const FLOOR_DETECT_DISTANCE = 20.0
-const DASH_MULTIPLIER = 1.75
+# How much the player's walking speed is increased when doing a dash
+const DASH_MULTIPLIER = 1.75 
+# The minimum amount a joystick needs to be moved for an input to be valid
 const JOYSTICK_POWER_THRESHOLD = 0.1
 
 export(String) var action_suffix = ""
