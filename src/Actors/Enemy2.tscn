@@ -11,7 +11,8 @@ extents = Vector2( 8, 12 )
 [node name="Enemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 speed = Vector2( 150, 350 )
-moving = false
+does_move = false
+does_jump = true
 
 [node name="Shield" type="Area2D" parent="." index="10"]
 collision_layer = 2
