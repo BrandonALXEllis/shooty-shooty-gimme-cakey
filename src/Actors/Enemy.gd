@@ -7,6 +7,8 @@ enum State {
 	DEAD
 }
 
+export(bool) var moving = true
+
 var _state = State.WALKING
 
 onready var platform_detector = $PlatformDetector
@@ -14,11 +16,15 @@ onready var floor_detector_left = $FloorDetectorLeft
 onready var floor_detector_right = $FloorDetectorRight
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
+onready var healthbar = $HealthDisplay
+export var max_health : int = 1000
+var health = max_health
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
 	_velocity.x = speed.x
+	healthbar.init(health, max_health)
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
@@ -61,9 +67,18 @@ func calculate_move_velocity(linear_velocity):
 
 	if is_on_wall():
 		velocity.x *= -1
+		
+	# Freeeze enemy if not moving
+	if !moving:
+		velocity.x = 0
 
 	return velocity
 
+func damage(amount):
+	health -= amount
+	healthbar.update_healthbar(health)
+	if health <=0:
+		self.destroy()
 
 func destroy():
 	_state = State.DEAD

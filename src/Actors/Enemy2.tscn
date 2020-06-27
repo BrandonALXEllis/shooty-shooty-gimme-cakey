@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Actors/Enemy2.gd" type="Script" id=2]
+[ext_resource path="res://src/Objects/Shield.gd" type="Script" id=3]
+[ext_resource path="res://assets/theme/art/ui/temphealthgreen.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 12 )
+
+[node name="Enemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+speed = Vector2( 150, 350 )
+moving = false
+
+[node name="Shield" type="Area2D" parent="." index="10"]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Shield" index="0"]
+position = Vector2( 20, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Shield" index="1"]
+position = Vector2( 20, -1.80478e-12 )
+rotation = -1.57079
+scale = Vector2( 0.123093, 0.676592 )
+texture = ExtResource( 4 )
