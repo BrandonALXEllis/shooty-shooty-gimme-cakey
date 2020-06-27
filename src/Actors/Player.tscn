@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/theme/art/player/robot_demo.png" type="Texture" id=2]
+[ext_resource path="res://assets/MC/mc_frames.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://assets/audio/sfx/jump.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/sfx/shoot.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/theme/art/ui/touch_button_left.png" type="Texture" id=5]
@@ -220,13 +220,13 @@ collision_mask = 8
 position = Vector2( 0, -14 )
 script = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -14 )
 z_index = 1
-texture = ExtResource( 2 )
-vframes = 2
-hframes = 16
-frame = 22
+frames = ExtResource( 2 )
+animation = "fall"
+playing = true
+offset = Vector2( 8, -1 )
 
 [node name="Gun" type="Position2D" parent="Sprite"]
 position = Vector2( 14, 1 )

@@ -7,11 +7,11 @@
 [ext_resource path="res://assets/theme/art/background/cloud_3.png" type="Texture" id=5]
 [ext_resource path="res://assets/theme/art/background/distant_platforms_1.png" type="Texture" id=6]
 
-
 [node name="ParallaxBackground" type="ParallaxBackground"]
 scroll_base_scale = Vector2( 0.4, 0 )
 
 [node name="Sky" type="ParallaxLayer" parent="."]
+visible = false
 motion_mirroring = Vector2( 400, 0 )
 
 [node name="Sprite" type="Sprite" parent="Sky"]
@@ -20,6 +20,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Clouds" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2( 0.1, 1 )
 motion_offset = Vector2( -550, 0 )
 
@@ -155,6 +156,7 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="Mountains2" type="ParallaxLayer" parent="."]
+visible = false
 position = Vector2( 0, 243 )
 motion_scale = Vector2( 0.2, 1 )
 
@@ -165,6 +167,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2048, 128 )
 
 [node name="Mountains1" type="ParallaxLayer" parent="."]
+visible = false
 position = Vector2( 0, 246 )
 motion_scale = Vector2( 0.4, 1 )
 
