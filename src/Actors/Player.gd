@@ -20,6 +20,8 @@ onready var ghost_spawn = $GhostSpawn
 
 var dash = false
 var last_horizontal_direction = 1
+#This is our little cheat so that player can hold a direction and jump back easily
+var turn_buffer = [false, false, false, false, false, false, false, false, false, false]
 
 
 func _ready():
@@ -68,8 +70,13 @@ func _physics_process(_delta):
 	if direction.x != 0:
 		#We don't want to change direction if midair shooting
 		if Input.is_action_pressed("shoot") and not is_on_floor():
-			pass
+			turn_buffer.push_front(true)
+			turn_buffer.pop_back()
 		else:
+			turn_buffer.push_front(false)
+			turn_buffer.pop_back()
+			
+		if not turn_buffer.has(true):
 			sprite.scale.x = 1 if direction.x > 0 else -1
 
 	# We use the sprite's scale to store Robi’s look direction which allows us to shoot

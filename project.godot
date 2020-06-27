@@ -65,8 +65,8 @@ _global_script_class_icons={
 "Coin": "",
 "DashSpawn": "",
 "Enemy": "",
-"GhostSpawn": "",
 "Enemy2": "",
+"GhostSpawn": "",
 "Gun": "",
 "Player": "",
 "Shield": ""
