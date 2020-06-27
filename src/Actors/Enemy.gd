@@ -7,6 +7,12 @@ enum State {
 	DEAD
 }
 
+export(bool) var does_move = true
+export(bool) var does_jump = false
+export(int) var max_health  = 1000
+var health = max_health
+var jumping = false;
+
 var _state = State.WALKING
 
 onready var platform_detector = $PlatformDetector
@@ -14,11 +20,17 @@ onready var floor_detector_left = $FloorDetectorLeft
 onready var floor_detector_right = $FloorDetectorRight
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
+onready var healthbar = $HealthDisplay
+onready var jump_timer = $JumpTimer
+
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
 	_velocity.x = speed.x
+	healthbar.init(health, max_health)
+	if (does_jump):
+		jump_timer.start()
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
@@ -53,6 +65,10 @@ func _physics_process(_delta):
 # If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
 func calculate_move_velocity(linear_velocity):
 	var velocity = linear_velocity
+	
+	if does_jump && jumping:
+		velocity.y = -speed.y
+		jumping = false;
 
 	if not floor_detector_left.is_colliding():
 		velocity.x = speed.x
@@ -61,9 +77,18 @@ func calculate_move_velocity(linear_velocity):
 
 	if is_on_wall():
 		velocity.x *= -1
+		
+	# Freeeze enemy if not moving
+	if !does_move:
+		velocity.x = 0
 
 	return velocity
 
+func damage(amount):
+	health -= amount
+	healthbar.update_healthbar(health)
+	if health <=0:
+		self.destroy()
 
 func destroy():
 	_state = State.DEAD
@@ -77,3 +102,10 @@ func get_new_animation():
 	else:
 		animation_new = "destroy"
 	return animation_new
+
+func jump():
+	jumping = true;
+
+func _on_JumpTimer_timeout():
+	jump()
+
