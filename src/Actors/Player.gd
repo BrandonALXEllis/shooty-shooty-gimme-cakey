@@ -82,10 +82,10 @@ func _physics_process(_delta):
 		shoot_cooldown.start()
 
 	var animation = get_new_animation(is_shooting)
-	if animation != animation_player.current_animation and shoot_timer.is_stopped():
+	if animation != sprite.animation and shoot_timer.is_stopped():
 		if is_shooting:
 			shoot_timer.start()
-		animation_player.play(animation)
+		sprite.play(animation)
 		
 	#Check for dash
 	var no_left_right = abs(Input.get_action_strength("move_right" + action_suffix) - Input.get_action_strength("move_left" + action_suffix)) < JOYSTICK_POWER_THRESHOLD
@@ -132,13 +132,13 @@ func calculate_move_velocity(
 
 
 func get_new_animation(is_shooting = false):
-	var animation_new = ""
+	var animation_new = "default"
 	if is_on_floor():
-		animation_new = "run" if abs(_velocity.x) > 0.1 else "idle"
+		animation_new = "walk" if abs(_velocity.x) > 0.1 else "default"
 	else:
-		animation_new = "falling" if _velocity.y > 0 else "jumping"
+		animation_new = "fall" if _velocity.y > 0 else "jump"
 	if is_shooting:
-		animation_new += "_weapon"
+		animation_new = "shoot"
 	return animation_new
 
 
