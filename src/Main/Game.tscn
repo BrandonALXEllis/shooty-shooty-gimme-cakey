@@ -9,7 +9,7 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="DarkLevel" parent="." instance=ExtResource( 3 )]
-position = Vector2( -3.27026, -11.5947 )
+position = Vector2( 27.2631, -255.403 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100

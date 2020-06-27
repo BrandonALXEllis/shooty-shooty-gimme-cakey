@@ -267,6 +267,7 @@ anims/standing_weapon_ready = SubResource( 10 )
 position = Vector2( 0, -28 )
 current = true
 process_mode = 0
+limit_bottom = 20000000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -14 )
