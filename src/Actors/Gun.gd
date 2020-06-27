@@ -8,7 +8,7 @@ const BULLET_VELOCITY = 500.0
 const Bullet = preload("res://src/Objects/Bullet.tscn")
 
 onready var sound_shoot = $Shoot
-onready var timer = $Cooldown
+onready var timer = $Cooldown #lol unused
 
 
 func shoot(direction = 1):
