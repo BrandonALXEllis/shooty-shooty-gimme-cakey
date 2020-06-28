@@ -10,4 +10,4 @@ func _on_body_entered(_body):
 	if !picked && _body is Player:
 		animation_player.play("picked")
 		picked = true
-		_body.increment_health(health)
+		Score.increment_hp(health)
