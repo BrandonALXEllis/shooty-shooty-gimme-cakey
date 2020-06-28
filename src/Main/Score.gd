@@ -29,6 +29,16 @@ const level_stages = {
 	"9": 3, 
 	"12": 4,
 }
+
+func reset_hp():
+	hp = MAX_HP
+	emit_signal("hp_changed")
+
+func reset_power():
+	level_points = 0
+	emit_signal("level_changed")
+
+
 func freeze_score(enable):
 	score_freeze = enable
 

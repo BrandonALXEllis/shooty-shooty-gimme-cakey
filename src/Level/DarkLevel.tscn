@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/theme/art/tileset/industrial_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Actors/CakeEnemy.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/theme/art/platforms/moving_platform.png" type="Texture" id=7]
 [ext_resource path="res://src/Actors/BatEnemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Level/Music.gd" type="Script" id=9]
+[ext_resource path="res://src/Level/BossEntrance.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/Actors/PresentEnemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=13]
 
@@ -305,3 +306,6 @@ position = Vector2( 546.073, 363.376 )
 [node name="PresentEnemy2" parent="." instance=ExtResource( 12 )]
 position = Vector2( 732.013, 482.126 )
 does_move = true
+
+[node name="BossEntrance" parent="." instance=ExtResource( 10 )]
+position = Vector2( 15.3647, 570.435 )

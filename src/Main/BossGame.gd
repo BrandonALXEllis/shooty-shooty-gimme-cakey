@@ -1,5 +1,5 @@
 extends Node
-class_name Game
+
 # This class contains controls that should always be accessible, like pausing
 # the game or toggling the window full-screen.
 
@@ -14,15 +14,7 @@ func _init():
 	OS.max_window_size = OS.get_screen_size()
 
 func _ready():
-	Score.freeze_score(false)
-	Score.reset_score()
-	GameTimer.stop_counting()
-	GameTimer.reset()
-	GameTimer.start_counting()
 	Global.connect("game_over", self, "disable_pausing")
-	Score.reset_hp()
-	Score.reset_power()
-	print("hahaha")
 	
 func disable_pausing():
 	can_pause = false
