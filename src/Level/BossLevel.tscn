@@ -845,6 +845,7 @@ script = ExtResource( 32 )
 __meta__ = {
 "_edit_group_": true
 }
+max_health = 50000
 enemy_scene_1 = ExtResource( 34 )
 enemy_scene_2 = ExtResource( 33 )
 
