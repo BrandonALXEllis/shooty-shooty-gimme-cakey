@@ -45,8 +45,9 @@ const PowerDrop = preload("res://src/Objects/PowerDrop.tscn")
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
-	$DetectRadius/CollisionShape2D.shape.radius = seek_radius
-	print($DetectRadius/CollisionShape2D.shape.radius)
+	health = max_health
+	if !!$DetectRadius/CollisionShape2D:
+		$DetectRadius/CollisionShape2D.shape.radius = seek_radius
 	_velocity.x = speed.x
 	healthbar.init(health, max_health)
 	if (does_jump):
@@ -68,11 +69,20 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
+	cooler_physics_process(_delta)
+		
+func _process(delta):
+	if changed_hit_color:
+		changed_hit_color += 1
+		if changed_hit_color > changed_hit_color_max:
+			modulate = Color.white
+			
+func cooler_physics_process(_delta):
 	_velocity = calculate_move_velocity(_velocity)
-
+	
 	# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
-
+	
 	# We flip the Sprite depending on which way the enemy is moving.
 	if does_fly:
 		if !!player && !flying:
@@ -83,7 +93,7 @@ func _physics_process(_delta):
 	else:
 		pass
 		# scale.x = -sign(saved_velocity_x)
-
+	
 	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
 		if animation_player.current_animation == 'idle':
@@ -91,13 +101,6 @@ func _physics_process(_delta):
 		animation_player.play(animation)
 		if animation == 'idle':
 			animation_player.seek(idle_anim_time)
-		
-func _process(delta):
-	if changed_hit_color:
-		changed_hit_color += 1
-		if changed_hit_color > changed_hit_color_max:
-			modulate = Color.white
-
 # This function calculates a new velocity whenever you need it.
 # If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
 func calculate_move_velocity(linear_velocity):
