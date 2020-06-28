@@ -38,3 +38,4 @@ func _ready():
 	$Choices.set_data(options, self)
 	$Choices.connect("update_description", self, "update_description")
 	$Choices.focus(0)
+	

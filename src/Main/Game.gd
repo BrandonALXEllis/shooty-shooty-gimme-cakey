@@ -7,11 +7,21 @@ extends Node
 # that is to say, another node or script should not access them.
 onready var _pause_menu = $InterfaceLayer/PauseMenu
 
-
+var can_pause = true
 func _init():
 	OS.min_window_size = OS.window_size
 	OS.max_window_size = OS.get_screen_size()
 
+func _ready():
+	Score.freeze_score(false)
+	Score.reset_score()
+	GameTimer.stop_counting()
+	GameTimer.reset()
+	GameTimer.start_counting()
+	Global.connect("game_over", self, "disable_pausing")
+	
+func disable_pausing():
+	can_pause = false
 
 func _notification(what):
 	if what == NOTIFICATION_WM_QUIT_REQUEST:
@@ -29,7 +39,8 @@ func _unhandled_input(event):
 	# when the game is paused, so this code keeps running.
 	# To see that, select GlobalControls, and scroll down to the Pause category
 	# in the inspector.
-	elif event.is_action_pressed("toggle_pause"):
+	elif event.is_action_pressed("toggle_pause") and can_pause:
+		
 		var tree = get_tree()
 		tree.paused = not tree.paused
 		if tree.paused:

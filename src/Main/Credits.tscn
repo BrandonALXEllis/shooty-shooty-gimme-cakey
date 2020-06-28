@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/Main/Tutorial.tscn" type="PackedScene" id=1]
+
+[node name="Credits" instance=ExtResource( 1 )]
+target = "res://src/Main/Tutorial.tscn"
+
+[node name="RichTextLabel" parent="." index="1"]
+text = "Credits:
+
+Anthony Ellis: Programmer
+Brandon Ellis: Programmer
+Alkalinedd: Artist, Graphic Designer
+Cade Christianson: Level Design
+Desmond Oliver: Music"
+
+[node name="Cover" parent="." index="3"]
+modulate = Color( 1, 1, 1, 1 )
