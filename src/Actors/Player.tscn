@@ -189,7 +189,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 10, 14 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_mask = 30
 script = ExtResource( 1 )
 
@@ -229,17 +231,42 @@ playing = true
 offset = Vector2( 8, -1 )
 
 [node name="Gun" type="Position2D" parent="Sprite"]
-position = Vector2( 14, 1 )
+position = Vector2( 13, 7 )
 script = ExtResource( 9 )
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Sprite/Gun"]
 position = Vector2( -30.6589, -6.13176 )
 stream = ExtResource( 4 )
+volume_db = 9.649
+pitch_scale = 2.28
 
-[node name="Cooldown" type="Timer" parent="Sprite/Gun"]
-process_mode = 0
-wait_time = 0.3
-one_shot = true
+[node name="Gun1" type="Position2D" parent="Sprite/Gun"]
+
+[node name="Gun2Top" type="Position2D" parent="Sprite/Gun"]
+position = Vector2( 2, -15 )
+
+[node name="Gun2Bottom" type="Position2D" parent="Sprite/Gun"]
+position = Vector2( 2, 15 )
+
+[node name="Gun3Top" type="Position2D" parent="Sprite/Gun"]
+position = Vector2( 4, -20 )
+rotation = -0.349066
+
+[node name="Gun3Bottom" type="Position2D" parent="Sprite/Gun"]
+position = Vector2( 4, 20 )
+rotation = 0.347312
+
+[node name="Gun4Top" type="Position2D" parent="Sprite/Gun"]
+position = Vector2( 5, -16 )
+rotation = -0.0865542
+
+[node name="Gun4Bottom" type="Position2D" parent="Sprite/Gun"]
+position = Vector2( 5, 16 )
+rotation = 0.0872665
+
+[node name="Gun5Top" type="Position2D" parent="Sprite/Gun"]
+
+[node name="Gun5Bottom" type="Position2D" parent="Sprite/Gun"]
 
 [node name="DashSpawn" type="Position2D" parent="Sprite"]
 position = Vector2( -8, 14 )

@@ -54,10 +54,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Player.gd"
 }, {
+"base": "Sprite",
+"class": "PowerDrop",
+"language": "GDScript",
+"path": "res://src/Objects/PowerDrop.gd"
+}, {
 "base": "Area2D",
 "class": "Shield",
 "language": "GDScript",
 "path": "res://src/Objects/Shield.gd"
+}, {
+"base": "Bullet",
+"class": "WaveBullet",
+"language": "GDScript",
+"path": "res://src/Objects/WaveBullet.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -69,7 +79,9 @@ _global_script_class_icons={
 "GhostSpawn": "",
 "Gun": "",
 "Player": "",
-"Shield": ""
+"PowerDrop": "",
+"Shield": "",
+"WaveBullet": ""
 }
 
 [application]

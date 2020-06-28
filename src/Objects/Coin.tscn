@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/audio/sfx/coin_pickup.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/Objects/Coin.gd" type="Script" id=4]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "picked"
 length = 1.5

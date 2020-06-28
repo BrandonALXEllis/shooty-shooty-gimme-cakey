@@ -12,6 +12,7 @@ export(bool) var does_jump = false
 export(int) var max_health  = 1000
 export(int) var score_per_hit = 10
 export(int) var score_destroy_bonus = 1000
+export(int) var num_powerups = 1
 var health = max_health
 var jumping = false;
 
@@ -25,6 +26,7 @@ onready var animation_player = $AnimationPlayer
 onready var healthbar = $HealthDisplay
 onready var jump_timer = $JumpTimer
 
+const PowerDrop = preload("res://src/Objects/PowerDrop.tscn")
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
@@ -97,7 +99,15 @@ func damage(amount):
 func destroy():
 	_state = State.DEAD
 	_velocity = Vector2.ZERO
+	drop_powerups()
 
+
+func drop_powerups():
+	for i in range(num_powerups):
+			var drop = PowerDrop.instance()
+			drop.global_position = global_position + Vector2(rand_range(-15, 15), rand_range(-15, 15))
+			drop.call_deferred("set_as_toplevel", true)
+			get_parent().call_deferred("add_child", drop)
 
 func get_new_animation():
 	var animation_new = ""

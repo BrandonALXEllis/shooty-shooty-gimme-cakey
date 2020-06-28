@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/UserInterface/ComboCounter.gd" type="Script" id=1]
-[ext_resource path="res://src/UserInterface/ScoreCounter.gd" type="Script" id=2]
+[ext_resource path="res://src/UserInterface/PowerHPBars.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UserInterface/ScoreCounter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UserInterface/ComboCounter.tscn" type="PackedScene" id=4]
 
@@ -25,23 +24,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ComboCounter" type="VBoxContainer" parent="Node" instance=ExtResource( 4 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -75.0
-margin_top = 21.0
-margin_bottom = 40.0
-grow_horizontal = 0
-custom_constants/separation = 0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ComboCounter" parent="Node" instance=ExtResource( 4 )]
 
-[node name="ScoreCounter" type="HBoxContainer" parent="Node" instance=ExtResource( 3 )]
-margin_right = 50.0
-margin_bottom = 13.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ScoreCounter" parent="Node" instance=ExtResource( 3 )]
+
+[node name="PowerHPBars" parent="Node" instance=ExtResource( 1 )]
