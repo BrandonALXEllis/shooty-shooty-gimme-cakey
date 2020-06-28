@@ -3,6 +3,7 @@ extends HBoxContainer
 
 func _ready():
 	GameTimer.connect("time_changed", self, "update_time")
+	update_time()
 	
 func update_time():
 	var minutes:int = int(GameTimer.seconds/60)

@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Enemy2.gd"
 }, {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://src/Main/Game.gd"
+}, {
 "base": "Position2D",
 "class": "GhostSpawn",
 "language": "GDScript",
@@ -81,6 +86,7 @@ _global_script_class_icons={
 "DashSpawn": "",
 "Enemy": "",
 "Enemy2": "",
+"Game": "",
 "GhostSpawn": "",
 "Gun": "",
 "Heart": "",

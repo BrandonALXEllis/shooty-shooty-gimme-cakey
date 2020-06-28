@@ -11,17 +11,16 @@
 [ext_resource path="res://src/UserInterface/EndMenu.gd" type="Script" id=9]
 [ext_resource path="res://src/UserInterface/YouWin.gd" type="Script" id=10]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 8
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Activate"
+[sub_resource type="Animation" id=3]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:percent_visible")
@@ -94,7 +93,7 @@ margin_left = 61.0
 margin_top = 3.0
 margin_right = 91.0
 margin_bottom = 9.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "TIME:"
 align = 2
 __meta__ = {
@@ -106,7 +105,7 @@ margin_left = 95.0
 margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 9.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "00:00"
 align = 2
 __meta__ = {
@@ -120,7 +119,7 @@ visible = false
 anchor_right = 1.0
 margin_top = 31.0249
 margin_bottom = 45.0249
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "GAME OVER"
 align = 1
 percent_visible = 0.0
@@ -130,7 +129,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node/GameOver"]
-anims/Activate = SubResource( 2 )
+anims/Activate = SubResource( 3 )
 
 [node name="EndMenu" type="Control" parent="Node/GameOver"]
 pause_mode = 2
@@ -181,7 +180,7 @@ text = "QUIT"
 anchor_right = 1.0
 margin_top = 31.0249
 margin_bottom = 45.0249
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "YOU WIN!!!"
 align = 1
 script = ExtResource( 10 )

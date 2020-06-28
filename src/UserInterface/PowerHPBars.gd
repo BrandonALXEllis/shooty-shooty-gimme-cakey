@@ -8,6 +8,8 @@ func _ready():
 	Score.connect("level_changed", self, "update_power")
 	Score.connect("hp_changed", self, "update_hp")
 	update_power()
+	$HBoxContainer/Hp.value = Score.get_hp_percentage()
+	$HBoxContainer/Hp/Hp2.value = Score.get_hp_percentage()
 	$HBoxContainer/Power.tint_progress = Color.lightskyblue
 	
 func update_hp():
@@ -26,6 +28,9 @@ func update_power():
 	
 func update_level():
 	var level = Score.get_level()
+	if level == 5:
+		$HBoxContainer/Power/AnimationPlayer.play("Activate")
+		$HBoxContainer2/Level.modulate = Color.lightskyblue
 	if level != current_level:
 		$HBoxContainer2/Level.text = str(level)
 		if level > current_level:
