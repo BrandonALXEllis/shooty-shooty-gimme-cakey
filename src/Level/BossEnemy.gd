@@ -130,6 +130,7 @@ export(PackedScene) var enemy_scene_2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	health = max_health
 	pass # Replace with function body.
 	
 func spawn_enemy():
@@ -149,7 +150,6 @@ func cooler_physics_process(_delta):
 	pass
 
 func destroy():
-	.destroy()
 	.get_parent().get_node('AnimationPlayer').play('destroyed')
 
 

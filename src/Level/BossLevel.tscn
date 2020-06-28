@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://assets/theme/art/tileset/industrial_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/Level/ParallaxBackground.tscn" type="PackedScene" id=2]
@@ -446,7 +446,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 4, 7 ),
+"times": PoolRealArray( 4, 6.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -497,7 +497,7 @@ tracks/7/path = NodePath("Enemy:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
-tracks/7/enabled = true
+tracks/7/enabled = false
 tracks/7/keys = {
 "times": PoolRealArray( 0, 6.9, 7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
@@ -527,6 +527,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("tnymobe/PathFollow2D:unit_offset")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -600,11 +612,6 @@ animations = [ {
 "name": "start",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "deploy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "moving",
@@ -624,6 +631,11 @@ animations = [ {
 "loop": true,
 "name": "laser",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": false,
+"name": "deploy",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=18]
@@ -641,11 +653,11 @@ extents = Vector2( 32, 91 )
 extents = Vector2( 76.2331, 40.465 )
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 80, 48 )
+extents = Vector2( 80, 35.1541 )
 
 [sub_resource type="Curve2D" id=22]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 416.158, 585.651, 0, 0, 0, 0, 408, 592, 96.586, 0, -96.586, 0, 248, 688, 0, 0, 0, 0, 70.5148, 580.344 )
+"points": PoolVector2Array( 0, 0, 0, 0, 416.158, 585.651, 0, 0, 0, 0, 408, 592, 96.586, 0, -96.586, 0, 246.915, 671.767, 0, 0, 0, 0, 70.5148, 580.344 )
 }
 
 [sub_resource type="Curve2D" id=23]
@@ -688,7 +700,12 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 640, 584, 0, 0, 0, 0, 416, 584 )
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Curve2D" id=31]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 247.816, 647.362, 0, 0, 0, 0, 248.048, 646.898 )
+}
+
+[sub_resource type="Animation" id=32]
 length = 40.0
 tracks/0/type = "animation"
 tracks/0/path = NodePath("SequencePlayer")
@@ -731,7 +748,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.9 )
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=33]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -761,7 +778,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=34]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -802,7 +819,7 @@ script = SubResource( 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-pitch_scale = 0.48
+pitch_scale = 1.79
 autoplay = true
 script = ExtResource( 4 )
 
@@ -836,14 +853,13 @@ anims/top_swipe_rl = SubResource( 11 )
 "boss",
 "enemy",
 ]]
-position = Vector2( 70.5149, 580.344 )
+position = Vector2( 70.5148, 580.344 )
 collision_layer = 1024
 collision_mask = 0
 script = ExtResource( 32 )
 __meta__ = {
 "_edit_group_": true
 }
-max_health = 50000
 score_destroy_bonus = 100000
 enemy_scene_1 = ExtResource( 34 )
 enemy_scene_2 = ExtResource( 33 )
@@ -897,7 +913,6 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2( 1.4852, 27.656 )
 shape = SubResource( 20 )
-disabled = true
 
 [node name="HealthDisplay" parent="Enemy" instance=ExtResource( 8 )]
 position = Vector2( -6.5148, -12.344 )
@@ -916,14 +931,12 @@ script = ExtResource( 31 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/DamageBox"]
 position = Vector2( 32, -24 )
 shape = SubResource( 21 )
-disabled = true
 
 [node name="swipe" type="Path2D" parent="."]
 curve = SubResource( 22 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="swipe"]
-position = Vector2( 70.5149, 580.344 )
-rotation = -2.1294
+position = Vector2( 70.5148, 580.344 )
 offset = 417.926
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="swipe/PathFollow2D"]
@@ -975,12 +988,13 @@ update_scale = false
 curve = SubResource( 26 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="startup"]
-position = Vector2( 248, 603.992 )
-rotation = -1.5708
-offset = 43.9765
+position = Vector2( 248, 560 )
+rotation = -1.57079
+offset = 87.9531
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="startup/PathFollow2D"]
 remote_path = NodePath("../../../Enemy")
+update_position = false
 update_rotation = false
 update_scale = false
 
@@ -988,9 +1002,9 @@ update_scale = false
 curve = SubResource( 27 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="startup2"]
-position = Vector2( 416, 584 )
-rotation = -1.10715
-offset = 192.755
+position = Vector2( 373.629, 606.881 )
+rotation = -0.413108
+offset = 144.567
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="startup2/PathFollow2D"]
 remote_path = NodePath("../../../Enemy")
@@ -1036,6 +1050,19 @@ remote_path = NodePath("../../../Enemy")
 update_rotation = false
 update_scale = false
 
+[node name="tnymobe" type="Path2D" parent="."]
+curve = SubResource( 31 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="tnymobe"]
+position = Vector2( 248.048, 646.898 )
+rotation = -1.10712
+offset = 0.518694
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="tnymobe/PathFollow2D"]
+remote_path = NodePath("../../../Enemy")
+update_rotation = false
+update_scale = false
+
 [node name="coinline1" type="Node2D" parent="."]
 position = Vector2( -8, -32 )
 script = ExtResource( 36 )
@@ -1047,13 +1074,13 @@ script = ExtResource( 36 )
 coinlineScene = ExtResource( 35 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/full_sequence = SubResource( 31 )
+anims/full_sequence = SubResource( 32 )
 
 [node name="CoinAnimator1" type="AnimationPlayer" parent="."]
-anims/coinmoves = SubResource( 32 )
+anims/coinmoves = SubResource( 33 )
 
 [node name="CoinAnimator2" type="AnimationPlayer" parent="."]
-anims/coinmove = SubResource( 33 )
+anims/coinmove = SubResource( 34 )
 [connection signal="animation_finished" from="AnimationPlayer" to="Enemy" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Enemy/AnimatedSprite/laser/DamageBox" to="Enemy/AnimatedSprite/laser/DamageBox" method="_on_DamageBox_body_entered"]
 [connection signal="body_exited" from="Enemy/AnimatedSprite/laser/DamageBox" to="Enemy/AnimatedSprite/laser/DamageBox" method="_on_DamageBox_body_exited"]
