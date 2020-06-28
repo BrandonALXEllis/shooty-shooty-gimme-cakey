@@ -23,7 +23,7 @@ const flavor_stages = {
 		"color": Color.green,
 		"outline_color": Color.black
 	},
-	"99999999999999": {
+	"999999999": {
 		"text": "WOAH!",
 		"color": Color.pink,
 		"outline_color": Color.black
