@@ -243,7 +243,6 @@ shape = SubResource( 6 )
 self_modulate = Color( 1, 1, 1, 0.833333 )
 position = Vector2( 2, -4.5 )
 frames = ExtResource( 2 )
-frame = 1
 playing = true
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 1 )]

@@ -245,7 +245,6 @@ position = Vector2( 0, -14 )
 z_index = 1
 frames = ExtResource( 2 )
 animation = "walk"
-frame = 1
 playing = true
 offset = Vector2( 8, -2 )
 
