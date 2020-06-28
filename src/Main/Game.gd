@@ -40,7 +40,6 @@ func _unhandled_input(event):
 	# To see that, select GlobalControls, and scroll down to the Pause category
 	# in the inspector.
 	elif event.is_action_pressed("toggle_pause") and can_pause:
-		
 		var tree = get_tree()
 		tree.paused = not tree.paused
 		if tree.paused:

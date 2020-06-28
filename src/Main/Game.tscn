@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/UserInterface/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=2]
-[ext_resource path="res://src/Level/BossLevel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Level/DarkLevel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UserInterface/ScoreUI.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node"]
@@ -17,5 +17,4 @@ visible = false
 
 [node name="ScoreUI" parent="InterfaceLayer" instance=ExtResource( 5 )]
 
-[node name="BossLevel" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -40 )
+[node name="DarkLevel" parent="." instance=ExtResource( 3 )]

@@ -73,7 +73,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3, 6, 8, 10, 16, 22, 24 )
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=3]
 resource_name = "destroyed"
 length = 2.0
 step = 0.01
@@ -87,7 +87,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Enemy/CollisionShape2D:disabled")
@@ -138,7 +138,7 @@ tracks/4/keys = {
 "values": [ 0.0, 0.0, 90.0, 90.0, 180.0 ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=4]
 resource_name = "enemydrop"
 tracks/0/type = "method"
 tracks/0/path = NodePath("Enemy/AnimatedSprite")
@@ -172,7 +172,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=5]
 resource_name = "laser"
 length = 4.5
 tracks/0/type = "value"
@@ -265,7 +265,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=6]
 resource_name = "laser2"
 length = 4.5
 tracks/0/type = "value"
@@ -358,7 +358,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=7]
 resource_name = "leftoff"
 tracks/0/type = "value"
 tracks/0/path = NodePath("leftoffscreen/PathFollow2D:unit_offset")
@@ -373,7 +373,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=8]
 resource_name = "rightin"
 tracks/0/type = "value"
 tracks/0/path = NodePath("rightinscreen/PathFollow2D:unit_offset")
@@ -388,7 +388,7 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=9]
 resource_name = "startup"
 length = 8.0
 tracks/0/type = "value"
@@ -529,8 +529,7 @@ tracks/9/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "top_swipe_lr"
+[sub_resource type="Animation" id=10]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("swipe/PathFollow2D:unit_offset")
@@ -545,8 +544,7 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "top_swipe_rl"
+[sub_resource type="Animation" id=11]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("swipe/PathFollow2D:unit_offset")
@@ -561,20 +559,20 @@ tracks/0/keys = {
 "values": [ 0.0, 1.0 ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=12]
 
-[sub_resource type="CanvasItemMaterial" id=34]
+[sub_resource type="CanvasItemMaterial" id=13]
 blend_mode = 1
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.5, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
 width = 256
 
-[sub_resource type="ParticlesMaterial" id=35]
+[sub_resource type="ParticlesMaterial" id=16]
 emission_shape = 1
 emission_sphere_radius = 8.0
 flag_disable_z = true
@@ -586,11 +584,11 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle_random = 1.0
 scale_random = 1.0
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 15 )
 hue_variation = 0.05
 hue_variation_random = 0.46
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
 "frames": [ ExtResource( 19 ), ExtResource( 12 ) ],
 "loop": true,
@@ -602,19 +600,19 @@ animations = [ {
 "name": "start",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "laser",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "moving",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
-"loop": true,
-"name": "fake",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "laser",
+"frames": [ ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "twitch",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
@@ -622,13 +620,13 @@ animations = [ {
 "name": "deploy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "twitch",
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "fake",
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=15]
+[sub_resource type="SpriteFrames" id=18]
 animations = [ {
 "frames": [ ExtResource( 29 ), ExtResource( 6 ), ExtResource( 30 ) ],
 "loop": true,
@@ -636,62 +634,61 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 32, 91 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 76.2331, 40.465 )
 
-[sub_resource type="RectangleShape2D" id=32]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 80, 48 )
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=22]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 416.158, 585.651, 0, 0, 0, 0, 408, 592, 96.586, 0, -96.586, 0, 248, 688, 0, 0, 0, 0, 70.5148, 580.344 )
 }
 
-[sub_resource type="Curve2D" id=13]
+[sub_resource type="Curve2D" id=23]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -128, 528, 0, 0, 0, 0, 400, 528 )
 }
 
-[sub_resource type="Curve2D" id=17]
+[sub_resource type="Curve2D" id=24]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 400, 528, 0, 0, 0, 0, 400, 296 )
 }
 
-[sub_resource type="Curve2D" id=18]
+[sub_resource type="Curve2D" id=25]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 576, 528, 0, 0, 0, 0, 80, 528 )
 }
 
-[sub_resource type="Curve2D" id=22]
+[sub_resource type="Curve2D" id=26]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 248, 648, 0, 0, 0, 0, 248, 560 )
 }
 
-[sub_resource type="Curve2D" id=23]
+[sub_resource type="Curve2D" id=27]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 248, 560, -29.1336, -1.81462, 29.1336, 1.81462, 336, 616, 0, 0, 0, 0, 416, 584 )
 }
 
-[sub_resource type="Curve2D" id=19]
+[sub_resource type="Curve2D" id=28]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 80, 528, 0, 0, 0, 0, 80, 296 )
 }
 
-[sub_resource type="Curve2D" id=25]
+[sub_resource type="Curve2D" id=29]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 72, 576, 0, 0, 0, 0, -128, 576 )
 }
 
-[sub_resource type="Curve2D" id=27]
+[sub_resource type="Curve2D" id=30]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 640, 584, 0, 0, 0, 0, 416, 584 )
 }
 
-[sub_resource type="Animation" id=29]
-resource_name = "full_sequence"
+[sub_resource type="Animation" id=31]
 length = 40.0
 tracks/0/type = "animation"
 tracks/0/path = NodePath("SequencePlayer")
@@ -734,8 +731,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.9 )
 }
 
-[sub_resource type="Animation" id=30]
-resource_name = "coinmoves"
+[sub_resource type="Animation" id=32]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -765,8 +761,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=31]
-resource_name = "coinmove"
+[sub_resource type="Animation" id=33]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -825,39 +820,39 @@ tile_data = PoolIntArray( 1441787, 0, 17, 1966074, 0, 20, 1966075, 0, 20, 196607
 anims/timeline = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/destroyed = SubResource( 33 )
-anims/enemydrop = SubResource( 28 )
-anims/laser = SubResource( 14 )
-anims/laser2 = SubResource( 20 )
-anims/leftoff = SubResource( 24 )
-anims/rightin = SubResource( 26 )
-anims/startup = SubResource( 21 )
-anims/top_swipe_lr = SubResource( 3 )
-anims/top_swipe_rl = SubResource( 4 )
+anims/destroyed = SubResource( 3 )
+anims/enemydrop = SubResource( 4 )
+anims/laser = SubResource( 5 )
+anims/laser2 = SubResource( 6 )
+anims/leftoff = SubResource( 7 )
+anims/rightin = SubResource( 8 )
+anims/startup = SubResource( 9 )
+anims/top_swipe_lr = SubResource( 10 )
+anims/top_swipe_rl = SubResource( 11 )
 
 [node name="Enemy" type="KinematicBody2D" parent="." groups=[
 "boss",
 ]]
-position = Vector2( 70.5148, 580.344 )
+position = Vector2( 70.5149, 580.344 )
 collision_layer = 1024
 collision_mask = 0
 script = ExtResource( 32 )
 __meta__ = {
 "_edit_group_": true
 }
-max_health = 50000
+max_health = 5
 enemy_scene_1 = ExtResource( 34 )
 enemy_scene_2 = ExtResource( 33 )
 
 [node name="Sprite" type="Sprite" parent="Enemy"]
-material = SubResource( 5 )
+material = SubResource( 12 )
 texture = ExtResource( 7 )
 flip_h = true
 hframes = 8
 frame = 7
 
 [node name="Explosion" type="Particles2D" parent="Enemy"]
-material = SubResource( 34 )
+material = SubResource( 13 )
 emitting = false
 amount = 32
 lifetime = 0.5
@@ -865,7 +860,7 @@ one_shot = true
 speed_scale = 1.2
 explosiveness = 0.76
 draw_order = 215832976
-process_material = SubResource( 35 )
+process_material = SubResource( 16 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="Enemy"]
 stream = ExtResource( 11 )
@@ -874,7 +869,7 @@ stream = ExtResource( 11 )
 stream = ExtResource( 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy"]
-frames = SubResource( 12 )
+frames = SubResource( 17 )
 animation = "start"
 frame = 2
 playing = true
@@ -883,7 +878,8 @@ playing = true
 visible = false
 show_behind_parent = true
 position = Vector2( 0, 150 )
-frames = SubResource( 15 )
+frames = SubResource( 18 )
+frame = 2
 playing = true
 
 [node name="DamageBox" type="Area2D" parent="Enemy/AnimatedSprite/laser"]
@@ -892,12 +888,12 @@ amount = 30.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AnimatedSprite/laser/DamageBox"]
 position = Vector2( 0, -3 )
-shape = SubResource( 16 )
+shape = SubResource( 19 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2( 1.4852, 27.656 )
-shape = SubResource( 10 )
+shape = SubResource( 20 )
 disabled = true
 
 [node name="HealthDisplay" parent="Enemy" instance=ExtResource( 8 )]
@@ -916,14 +912,15 @@ script = ExtResource( 31 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/DamageBox"]
 position = Vector2( 32, -24 )
-shape = SubResource( 32 )
+shape = SubResource( 21 )
+disabled = true
 
 [node name="swipe" type="Path2D" parent="."]
-curve = SubResource( 11 )
+curve = SubResource( 22 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="swipe"]
-position = Vector2( 70.5148, 580.344 )
-rotation = -2.23613
+position = Vector2( 70.5149, 580.344 )
+rotation = -2.1294
 offset = 417.926
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="swipe/PathFollow2D"]
@@ -932,7 +929,7 @@ update_rotation = false
 update_scale = false
 
 [node name="laser" type="Path2D" parent="."]
-curve = SubResource( 13 )
+curve = SubResource( 23 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="laser"]
 position = Vector2( 400, 528 )
@@ -945,7 +942,7 @@ update_rotation = false
 update_scale = false
 
 [node name="laserup" type="Path2D" parent="."]
-curve = SubResource( 17 )
+curve = SubResource( 24 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="laserup"]
 position = Vector2( 400, 296 )
@@ -958,7 +955,7 @@ update_rotation = false
 update_scale = false
 
 [node name="laser2" type="Path2D" parent="."]
-curve = SubResource( 18 )
+curve = SubResource( 25 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="laser2"]
 position = Vector2( 80, 528 )
@@ -972,7 +969,7 @@ update_rotation = false
 update_scale = false
 
 [node name="startup" type="Path2D" parent="."]
-curve = SubResource( 22 )
+curve = SubResource( 26 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="startup"]
 position = Vector2( 248, 560 )
@@ -986,11 +983,11 @@ update_rotation = false
 update_scale = false
 
 [node name="startup2" type="Path2D" parent="."]
-curve = SubResource( 23 )
+curve = SubResource( 27 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="startup2"]
 position = Vector2( 416, 584 )
-rotation = -0.570183
+rotation = -1.10715
 offset = 192.755
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="startup2/PathFollow2D"]
@@ -999,7 +996,7 @@ update_rotation = false
 update_scale = false
 
 [node name="laserup2" type="Path2D" parent="."]
-curve = SubResource( 19 )
+curve = SubResource( 28 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="laserup2"]
 position = Vector2( 80, 296 )
@@ -1012,7 +1009,7 @@ update_rotation = false
 update_scale = false
 
 [node name="leftoffscreen" type="Path2D" parent="."]
-curve = SubResource( 25 )
+curve = SubResource( 29 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="leftoffscreen"]
 position = Vector2( -128, 576 )
@@ -1025,7 +1022,7 @@ update_rotation = false
 update_scale = false
 
 [node name="rightinscreen" type="Path2D" parent="."]
-curve = SubResource( 27 )
+curve = SubResource( 30 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="rightinscreen"]
 position = Vector2( 416, 584 )
@@ -1048,13 +1045,13 @@ script = ExtResource( 36 )
 coinlineScene = ExtResource( 35 )
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/full_sequence = SubResource( 29 )
+anims/full_sequence = SubResource( 31 )
 
 [node name="CoinAnimator1" type="AnimationPlayer" parent="."]
-anims/coinmoves = SubResource( 30 )
+anims/coinmoves = SubResource( 32 )
 
 [node name="CoinAnimator2" type="AnimationPlayer" parent="."]
-anims/coinmove = SubResource( 31 )
+anims/coinmove = SubResource( 33 )
 [connection signal="animation_finished" from="AnimationPlayer" to="Enemy" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="Enemy/AnimatedSprite/laser/DamageBox" to="Enemy/AnimatedSprite/laser/DamageBox" method="_on_DamageBox_body_entered"]
 [connection signal="body_exited" from="Enemy/AnimatedSprite/laser/DamageBox" to="Enemy/AnimatedSprite/laser/DamageBox" method="_on_DamageBox_body_exited"]

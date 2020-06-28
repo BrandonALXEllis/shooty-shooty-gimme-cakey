@@ -29,5 +29,6 @@ func destroy():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
+	print("help")
 	if anim_name == 'destroyed':
-		get_tree().change_scene("res://WIN.tscn")
+		Global.trigger_win()
