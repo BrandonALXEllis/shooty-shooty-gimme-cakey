@@ -205,9 +205,9 @@ stream = ExtResource( 4 )
 shape = SubResource( 5 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 3.30451, -4.8739 )
+position = Vector2( 3.30452, -4.87391 )
 frames = ExtResource( 2 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 1 )]
@@ -224,8 +224,8 @@ scale = Vector2( 0.729537, 0.729537 )
 curve = SubResource( 7 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 4.5296, -6.68082 )
-rotation = -0.360692
+position = Vector2( 4.52962, -6.68083 )
+rotation = -0.360689
 offset = 55.7198
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]

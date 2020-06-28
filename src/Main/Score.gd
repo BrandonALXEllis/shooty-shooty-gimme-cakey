@@ -1,5 +1,7 @@
 extends Node
 
+const FILE_NAME = "user://game-data.json"
+
 const DAMAGE_CAP = 10.0
 const DAMAGE_PER_COMBO = 1.0/100.0
 const MAX_HP = 100.0
@@ -9,13 +11,17 @@ var damage_multiplier = 1.0
 var score = 0
 var damage_multiplier_ratio = 0.0
 var level_points = 0
-var hp = 100.0
+var hp = 10.0
+var hiscore = 0
+var data = {}
+var score_freeze = false
 
 signal combo_increased
 signal combo_force_reset
 signal score_increased
 signal level_changed
 signal hp_changed
+signal hp_zero
 
 const level_stages = {
 	"3": 1,
@@ -23,10 +29,47 @@ const level_stages = {
 	"9": 3, 
 	"12": 4,
 }
+func freeze_score(enable):
+	score_freeze = enable
+
+func reset_score():
+	score = 0
+
+func save_hi_score():
+	if score > hiscore:
+		hiscore = score
+	save_data()
+
+func save_data():
+	data["hiscore"] = hiscore
+	var file = File.new()
+	file.open(FILE_NAME, File.WRITE)
+	file.store_string(to_json(data))
+	file.close()
+
+func load_data():
+	var file = File.new()
+	if file.file_exists(FILE_NAME):
+		file.open(FILE_NAME, File.READ)
+		var new_data = parse_json(file.get_as_text())
+		file.close()
+		if typeof(data) == TYPE_DICTIONARY:
+			data = new_data
+			hiscore = data["hiscore"]
+		else:
+			printerr("Corrupted data!")
+	else:
+		print("No saved data!")
+
+func _ready():
+	load_data()
 
 func increment_hp(amount):
 	hp += amount
 	emit_signal("hp_changed")
+	if hp <= 0:
+		emit_signal("hp_zero")
+		#Global.trigger_win()
 
 func get_hp_percentage():
 	return hp/MAX_HP
@@ -67,8 +110,9 @@ func increment_combo():
 	emit_signal("combo_increased")
 	
 func increment_score(amount):
-	score += amount
-	emit_signal("score_increased")
+	if not score_freeze:
+		score += amount
+		emit_signal("score_increased")
 
 func reset_combo():
 	hit_combo = 0

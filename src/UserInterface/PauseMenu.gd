@@ -2,7 +2,8 @@ extends Control
 
 
 onready var resume_button = $VBoxContainer/ResumeButton
-
+const Game = "res://src/Main/Game.tscn"
+const TitleScene = "res://src/Main/TitleScene.tscn"
 
 func _ready():
 	visible = false
@@ -23,7 +24,10 @@ func _on_ResumeButton_pressed():
 
 
 func _on_QuitButton_pressed():
-	if get_parent().get_parent().name == "Splitscreen":
-		# We need to clean up a little bit first to avoid Viewport errors.
-		$"../../Black/SplitContainer/ViewportContainer1".free()
-	get_tree().quit()
+	get_tree().paused = false
+	SceneChanger.change_scene(TitleScene)
+
+
+func _on_RestartButton_pressed():
+	get_tree().paused = false
+	SceneChanger.change_scene(Game)

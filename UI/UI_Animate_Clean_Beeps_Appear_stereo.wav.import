@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/UI_Animate_Clean_Beeps_Appear_stereo.wav-7fccd3b0d4c12db76860c0b062c65ee3.sample"
+
+[deps]
+
+source_file="res://UI/UI_Animate_Clean_Beeps_Appear_stereo.wav"
+dest_files=[ "res://.import/UI_Animate_Clean_Beeps_Appear_stereo.wav-7fccd3b0d4c12db76860c0b062c65ee3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -14,3 +14,8 @@ func _ready():
 	else:
 		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), base_volume_db)
 		volume_db = 0
+		
+	Global.connect("stop_music", self, "stop_music")
+	
+func stop_music():
+	stop()

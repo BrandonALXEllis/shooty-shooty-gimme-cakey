@@ -1,6 +1,7 @@
 class_name Player
 extends Actor
 
+const DEATH_ANIM_OFFSET = Vector2(0, 2)
 
 const FLOOR_DETECT_DISTANCE = 20.0
 # How much the player's walking speed is increased when doing a dash
@@ -20,11 +21,13 @@ onready var gun = $Sprite/Gun
 onready var dash_spawn = $Sprite/DashSpawn
 onready var ghost_spawn = $GhostSpawn
 
+var freeze = false
 var dash = false
 var last_horizontal_direction = 1
 var debuffed = false;
 #This is our little cheat so that player can hold a direction and jump back easily
 var turn_buffer = [false, false, false, false, false, false, false, false, false, false]
+
 
 
 func _ready():
@@ -36,7 +39,12 @@ func _ready():
 		var viewport: Viewport = $"../../../../ViewportContainer2/Viewport"
 		viewport.world_2d = ($"../.." as Viewport).world_2d
 		camera.custom_viewport = viewport
+	Score.connect("hp_zero", self, "die")
+	Global.connect("you_win", self, "win")
 
+
+func win():
+	freeze = true
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
@@ -57,6 +65,7 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):	
+	if freeze: return
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		$Jump.stop()
 		$Jump.play()
@@ -161,17 +170,34 @@ func _on_GhostSpacing_timeout():
 		ghost_spawn.shoot(sprite)
 		
 func increment_health(amount):
-	print("Added health ", amount)
-	#TODO: add the health to the health bar
+	Score.increment_hp(amount)
 
 func damage(amount):
+	if freeze: return
 	if !debuffed:
-		#TODO: damage here
 		debuffed = true
 		print("owie", amount)
+		Score.force_combo_reset()
+		$Hurt.play()
 		$DebuffTimer.start()
 		$AnimationPlayer.play("hurty")
-
+		Score.increment_hp(-amount)
+		
+func die():
+	print("dead")
+	freeze = true
+	dash = false
+	$AnimationPlayer.stop(true)
+	Score.save_hi_score()
+	Score.reset_score()
+	Score.freeze_score(true)
+	GameTimer.stop_counting()
+	sprite.offset = DEATH_ANIM_OFFSET
+	Global.cut_music()
+	$Death.play()
+	sprite.play("death")
+	yield(sprite, "animation_finished")
+	Global.trigger_game_over()
 
 func _on_DebuffTimer_timeout():
 	debuffed = false;

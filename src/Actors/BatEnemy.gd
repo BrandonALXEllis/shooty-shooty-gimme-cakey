@@ -36,7 +36,7 @@ func actually_shoot():
 	if player:
 		var bull = bullet_scene.instance()
 		bull.global_position = global_position
-		bull.velocity = global_position.direction_to(player.global_position) * chase_speed*speed*2
+		bull.velocity = global_position.direction_to(player.global_position + Vector2(0,-10)) * chase_speed*speed*2
 		bull.set_as_toplevel(true)
 		add_child(bull)
 
