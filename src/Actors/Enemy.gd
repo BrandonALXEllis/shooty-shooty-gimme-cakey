@@ -15,6 +15,9 @@ export(int) var max_health  = 1000
 export(float) var chase_speed = 1
 export(float) var jump_speed = 1.5
 export(float) var seek_radius = 100
+export(int) var score_per_hit = 10
+export(int) var score_destroy_bonus = 1000
+export(int) var num_powerups = 1
 var health = max_health
 var jumping = false;
 var flying = false;
@@ -37,6 +40,7 @@ onready var jump_timer = $JumpTimer
 
 #player object on detection for chasing.
 var player = null
+const PowerDrop = preload("res://src/Objects/PowerDrop.tscn")
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
@@ -163,13 +167,23 @@ func damage(amount):
 	modulate= Color.yellow
 	changed_hit_color = 1
 	$Hit.play()
+	Score.increment_score(score_per_hit)
 	if health <=0:
+		Score.increment_score(score_destroy_bonus)
 		self.destroy()
 
 func destroy():
 	_state = State.DEAD
 	_velocity = Vector2.ZERO
+	drop_powerups()
 
+
+func drop_powerups():
+	for i in range(num_powerups):
+			var drop = PowerDrop.instance()
+			drop.global_position = global_position + Vector2(rand_range(-15, 15), rand_range(-15, 15))
+			drop.call_deferred("set_as_toplevel", true)
+			get_parent().call_deferred("add_child", drop)
 
 func get_new_animation():
 	var animation_new = ""

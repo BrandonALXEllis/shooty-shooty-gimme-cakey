@@ -3,7 +3,9 @@ extends Actor
 
 
 const FLOOR_DETECT_DISTANCE = 20.0
-const DASH_MULTIPLIER = 1.75
+# How much the player's walking speed is increased when doing a dash
+const DASH_MULTIPLIER = 1.75 
+# The minimum amount a joystick needs to be moved for an input to be valid
 const JOYSTICK_POWER_THRESHOLD = 0.1
 
 export(String) var action_suffix = ""
@@ -21,6 +23,9 @@ onready var ghost_spawn = $GhostSpawn
 var dash = false
 var last_horizontal_direction = 1
 var debuffed = false;
+#This is our little cheat so that player can hold a direction and jump back easily
+var turn_buffer = [false, false, false, false, false, false, false, false, false, false]
+
 
 func _ready():
 	# Static types are necessary here to avoid warnings.
@@ -52,6 +57,10 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$Jump.stop()
+		$Jump.play()
+		
 	var direction = get_direction()
 
 	var is_jump_interrupted = Input.is_action_just_released("jump" + action_suffix) and _velocity.y < 0.0
@@ -68,8 +77,13 @@ func _physics_process(_delta):
 	if direction.x != 0:
 		#We don't want to change direction if midair shooting
 		if Input.is_action_pressed("shoot") and not is_on_floor():
-			pass
+			turn_buffer.push_front(true)
+			turn_buffer.pop_back()
 		else:
+			turn_buffer.push_front(false)
+			turn_buffer.pop_back()
+			
+		if not turn_buffer.has(true):
 			sprite.scale.x = 1 if direction.x > 0 else -1
 
 	# We use the sprite's scale to store Robi’s look direction which allows us to shoot
