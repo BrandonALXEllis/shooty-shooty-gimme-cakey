@@ -224,6 +224,7 @@ script = ExtResource( 11 )
 position = Vector2( 0, -14 )
 z_index = 1
 frames = ExtResource( 2 )
+animation = "shoot"
 playing = true
 offset = Vector2( 8, -2 )
 

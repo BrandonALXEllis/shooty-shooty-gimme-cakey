@@ -19,6 +19,7 @@ var health = max_health
 var jumping = false;
 var flying = false;
 var saved_velocity_x = 0
+var last_dir = 1
 var saved_velocity = Vector2(0,0)
 
 var _state = State.WALKING
@@ -66,7 +67,11 @@ func _physics_process(_delta):
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 
 	# We flip the Sprite depending on which way the enemy is moving.
-	sprite.scale.x = 1 if _velocity.x > 0 else -1
+	if !does_jump:
+		sprite.scale.x = -1 if _velocity.x > 0 else 1
+	else:
+		pass
+		# scale.x = -sign(saved_velocity_x)
 
 	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
@@ -82,14 +87,14 @@ func calculate_move_velocity(linear_velocity):
 	if player && does_chase:
 		if does_jump:
 			if is_on_floor():
-				saved_velocity_x = (position.direction_to(player.position) * chase_speed*speed).x
+				saved_velocity_x = (sign(position.direction_to(player.position).x) * chase_speed*speed.x)
 		elif does_fly:
 			if $FlyTimer.is_stopped():
 				flying = true
 				$FlyTimer.start()
 		else:
 			if is_on_floor():
-				velocity.x = (position.direction_to(player.position) * chase_speed*speed).x
+				velocity.x = (sign(position.direction_to(player.position).x) * chase_speed*speed.x)
 	
 	if does_jump:
 		if !jumping:
@@ -105,8 +110,10 @@ func calculate_move_velocity(linear_velocity):
 			
 			if not floor_detector_left.is_colliding():
 				velocity.x = speed.x
+				saved_velocity_x = velocity.x
 			elif not floor_detector_right.is_colliding():
 				velocity.x = -speed.x
+				saved_velocity_x = velocity.x
 			else:
 				velocity.x = saved_velocity_x
 	else:
@@ -137,6 +144,7 @@ func calculate_move_velocity(linear_velocity):
 func damage(amount):
 	health -= amount
 	healthbar.update_healthbar(health)
+	$Hit.play()
 	if health <=0:
 		self.destroy()
 
@@ -154,7 +162,8 @@ func get_new_animation():
 	return animation_new
 
 func jump():
-	jumping = true;
+	if does_jump:
+		jumping = true;
 
 func _on_JumpTimer_timeout():
 	jump()

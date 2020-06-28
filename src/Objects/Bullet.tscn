@@ -67,7 +67,7 @@ tracks/2/keys = {
 [node name="Bullet" type="Area2D"]
 material = SubResource( 1 )
 collision_layer = 0
-collision_mask = 26
+collision_mask = 1050
 script = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]

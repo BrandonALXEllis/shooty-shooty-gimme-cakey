@@ -6,11 +6,20 @@ extends Enemy
 # var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_FlyTimer_timeout():	
+	if flying:
+		$FlyTimer.wait_time = .3
+		if !player:
+			$FlyTimer.stop()
+	
+	#If done flying, stop.
+	elif !flying:
+		$FlyTimer.wait_time = 1
+		print("flying")
+		#determine new velocity to fly in
+		if player && does_chase:
+			saved_velocity = position.direction_to(player.position + Vector2(0,-20)) * chase_speed*speed
+		else:
+			saved_velocity = Vector2(0,0)
+			
+	flying = !flying

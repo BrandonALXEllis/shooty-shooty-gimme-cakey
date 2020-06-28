@@ -1,25 +1,227 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UserInterface/HealthDisplay.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Enemy/batframes.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://src/Actors/BatEnemy.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/sfx/explode.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/sfx/hit.wav" type="AudioStream" id=6]
+[ext_resource path="res://src/Objects/boomparticles.tres" type="Material" id=7]
+
+[sub_resource type="Animation" id=14]
+resource_name = "destroy"
+length = 1.5
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, -4.5 ), Vector2( 2, -16 ), Vector2( 2, 84 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 980.0, 2000.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Explosion:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Explode:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 1.25
+loop = true
+step = 0.25
+
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 1
 
 [sub_resource type="CircleShape2D" id=1]
 resource_local_to_scene = true
 radius = 112.641
 
-[node name="BatEnemy" instance=ExtResource( 1 )]
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="Curve2D" id=13]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 7.69452, 0, -7.69452, 0, -8, -8, 0, 0, 0, 0, -16, 0, -7.85651, 0.0809949, 7.85651, -0.0809949, -8, 8, 0, 0, 0, 0, 0, 0, -7.85651, 0.16199, 7.85651, -0.16199, 8, -8, 0, 0, 0, 0, 16, 0, 7.9375, -0.16199, -7.9375, 0.16199, 8, 8, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="BatEnemy" type="KinematicBody2D"]
+collision_layer = 1024
 collision_mask = 0
 script = ExtResource( 3 )
-speed = Vector2( 150, 350 )
 has_gravity = false
 does_fly = true
 chase_speed = 1.5
 seek_radius = 250.0
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="11"]
-position = Vector2( 0, -4 )
+[node name="PlatformDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, 6 )
+enabled = true
+cast_to = Vector2( 0, 8 )
+collision_mask = 8
+
+[node name="FloorDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2( -15, -4 )
+enabled = true
+cast_to = Vector2( 0, 35 )
+collision_mask = 24
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="."]
+position = Vector2( 15.5, -3 )
+enabled = true
+cast_to = Vector2( 0, 35 )
+collision_mask = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/destroy = SubResource( 14 )
+anims/idle = SubResource( 15 )
+anims/walk = SubResource( 16 )
+
+[node name="Explosion" type="Particles2D" parent="."]
+material = SubResource( 6 )
+emitting = false
+amount = 32
+one_shot = true
+speed_scale = 3.69
+explosiveness = 0.76
+draw_order = 215832976
+process_material = ExtResource( 7 )
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="JumpTimer" type="Timer" parent="."]
+
+[node name="DetectRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 2 )
 
-[node name="CollisionShape2D" parent="DetectRadius" index="0"]
-shape = SubResource( 1 )
+[node name="HealthDisplay" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -4 )
+
+[node name="FlyTimer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 11 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 13 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = -1.83995
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../Sprite")
+update_rotation = false
+update_scale = false
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="timeout" from="FlyTimer" to="." method="_on_FlyTimer_timeout"]

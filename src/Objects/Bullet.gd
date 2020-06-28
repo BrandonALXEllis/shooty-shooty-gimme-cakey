@@ -14,6 +14,7 @@ func destroy():
 func _on_body_entered(body):
 	if body is Enemy:
 		body.damage(damage)
+		body._velocity = Vector2(0,0)
 		self.queue_free()
 
 
