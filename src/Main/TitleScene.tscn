@@ -1,0 +1,386 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://assets/MC/shoot/mcshoot1.png" type="Texture" id=1]
+[ext_resource path="res://UI/grid.png" type="Texture" id=2]
+[ext_resource path="res://UI/absender/absender1.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://UI/DynamicTextBox.gd" type="Script" id=4]
+[ext_resource path="res://assets/MC/shoot/mcshoot2.png" type="Texture" id=5]
+[ext_resource path="res://UI/down_hill/Down Hill.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://UI/Choices.gd" type="Script" id=7]
+[ext_resource path="res://UI/Choice.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Main/TitleScene.gd" type="Script" id=9]
+[ext_resource path="res://UI/bgm_maoudamashii_cyber44 (1).ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/MC/shoot/mcshoot3.png" type="Texture" id=11]
+[ext_resource path="res://assets/fonts/dogica_bold/OTF/dogicapixelbold.otf" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/fonts/dogica/OTF/dogica.otf" type="DynamicFontData" id=13]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "activate"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "activate"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 180.0, 270.0 ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 60
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[sub_resource type="Animation" id=11]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 600, 0 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 3 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 30.0
+} ]
+
+[sub_resource type="DynamicFont" id=13]
+extra_spacing_char = -4
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 24
+outline_size = 2
+outline_color = Color( 0.345098, 0, 0, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 24
+outline_size = 2
+outline_color = Color( 0.85098, 0.862745, 0.101961, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0.109804, 1, 1 )
+extra_spacing_char = -4
+font_data = ExtResource( 12 )
+
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 2
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="Background"]
+rotation = 3.55
+
+[node name="Polygon2D" type="Polygon2D" parent="Background/Node2D"]
+position = Vector2( -37.1415, -37.9153 )
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( 36.8942, 39.4781, -3764.53, -1682.27, -2088.87, -3564.81 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Background/Node2D"]
+position = Vector2( 53.4899, -12.7402 )
+rotation = 2.09439
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( 36.8942, 39.4781, -3049.76, -2442.02, -2412.75, -4410.88 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Background/Node2D"]
+position = Vector2( 1.69336, 13.8478 )
+rotation = -2.07784
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( 36.8942, 39.4781, -4245.92, -1335.39, -2719.6, -2685.48 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+autoplay = "activate"
+anims/activate = SubResource( 2 )
+
+[node name="Node2D2" type="Node2D" parent="Background"]
+rotation = 3.55
+
+[node name="Polygon2D" type="Polygon2D" parent="Background/Node2D2"]
+position = Vector2( -37.1415, -37.9153 )
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( 36.8942, 39.4781, -3764.53, -1682.27, -2088.87, -3564.81 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Background/Node2D2"]
+position = Vector2( 53.4899, -12.7402 )
+rotation = 2.09439
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( 36.8942, 39.4781, -3049.76, -2442.02, -2412.75, -4410.88 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Background/Node2D2"]
+position = Vector2( 1.69336, 13.8478 )
+rotation = -2.07784
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
+polygon = PoolVector2Array( 36.8942, 39.4781, -4245.92, -1335.39, -2719.6, -2685.48 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Background"]
+autoplay = "activate"
+anims/activate = SubResource( 3 )
+
+[node name="Choices" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_right = 112.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Choices"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 33.0
+margin_top = -1.29236
+margin_bottom = -44.2924
+theme = SubResource( 5 )
+custom_constants/separation = 15
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1" parent="Choices/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 431.0
+margin_right = 271.0
+margin_bottom = 443.0
+
+[node name="Control" parent="Choices/VBoxContainer/1" index="0"]
+margin_right = 24.0
+margin_bottom = 12.0
+
+[node name="Label" parent="Choices/VBoxContainer/1" index="1"]
+margin_left = 28.0
+margin_top = 0.0
+margin_right = 271.0
+margin_bottom = 12.0
+
+[node name="Button" parent="Choices/VBoxContainer/1/Label" index="1"]
+focus_next = NodePath("../../../2/Label/Button")
+focus_previous = NodePath("../../../3/Label/Button")
+
+[node name="2" parent="Choices/VBoxContainer" instance=ExtResource( 8 )]
+modulate = Color( 0, 0, 0, 0 )
+margin_top = 458.0
+margin_right = 271.0
+margin_bottom = 470.0
+
+[node name="Control" parent="Choices/VBoxContainer/2" index="0"]
+margin_right = 24.0
+margin_bottom = 12.0
+
+[node name="Label" parent="Choices/VBoxContainer/2" index="1"]
+margin_left = 28.0
+margin_top = 0.0
+margin_right = 271.0
+margin_bottom = 12.0
+
+[node name="AnimationPlayer" parent="Choices/VBoxContainer/2/Label/Polygon2D" index="0"]
+anims/Wipe = SubResource( 11 )
+
+[node name="Button" parent="Choices/VBoxContainer/2/Label" index="1"]
+focus_next = NodePath("../../../2/Label/Button")
+focus_previous = NodePath("../../../3/Label/Button")
+
+[node name="3" parent="Choices/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 485.0
+margin_right = 271.0
+margin_bottom = 497.0
+
+[node name="Spacer" type="Control" parent="."]
+margin_left = 801.0
+margin_top = 459.0
+margin_right = 1072.0
+margin_bottom = 459.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DynamicTextBox" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -24.0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 24 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="DynamicTextBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DynamicTextBox/PanelContainer"]
+margin_top = 6.0
+margin_right = 960.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0.85098, 1, 0, 1 )
+text = "TEST TEST TEST TEST TEST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="DynamicTextBox"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 208.286, 191.951 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 12 )
+frame = 2
+playing = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 7.70012
+margin_bottom = 107.7
+custom_constants/separation = 8
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+margin_right = 960.0
+margin_bottom = 12.0
+custom_fonts/font = SubResource( 13 )
+text = "I Accidentally Got Invited To the"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 20.0
+margin_right = 960.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 1, 0.0784314, 0.0784314, 1 )
+text = "Demon Lord's"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+margin_top = 46.0
+margin_right = 960.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 16 )
+text = "Birthday Party"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 960.0
+margin_bottom = 84.0
+custom_fonts/font = SubResource( 13 )
+text = "But It's A Good Thing I Brought My"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 960.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 15 )
+text = "Multi Combo Death Blaster"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[editable path="Choices/VBoxContainer/1"]
+
+[editable path="Choices/VBoxContainer/2"]

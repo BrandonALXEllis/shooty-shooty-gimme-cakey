@@ -33,24 +33,32 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 71.0
-margin_right = 174.0
-margin_bottom = 91.0
-text = "Game Paused"
+margin_top = 53.0
+margin_right = 176.0
+margin_bottom = 65.0
+text = "GAME PAUSED"
 align = 1
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
-margin_top = 95.0
-margin_right = 174.0
-margin_bottom = 135.0
+margin_top = 69.0
+margin_right = 176.0
+margin_bottom = 109.0
 rect_min_size = Vector2( 0, 40 )
-text = "Resume"
+text = "RESUME"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+margin_top = 113.0
+margin_right = 176.0
+margin_bottom = 153.0
+rect_min_size = Vector2( 0, 40 )
+text = "RESTART"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 139.0
-margin_right = 174.0
-margin_bottom = 179.0
+margin_top = 157.0
+margin_right = 176.0
+margin_bottom = 197.0
 rect_min_size = Vector2( 0, 40 )
-text = "Quit"
+text = "QUIT"
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
