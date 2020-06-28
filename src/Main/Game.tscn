@@ -9,8 +9,14 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="DarkLevel" parent="." instance=ExtResource( 3 )]
+position = Vector2( 27.2631, -255.403 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
+visible = false
+margin_left = -36.4847
+margin_top = 58.3347
+margin_right = -36.4847
+margin_bottom = 58.3347
