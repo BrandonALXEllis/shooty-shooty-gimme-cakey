@@ -9,3 +9,5 @@ func _ready():
 func activate():
 	show()
 	$AnimationPlayer.play("Activate")
+	yield($AnimationPlayer, "animation_finished")
+	$EndMenu.popup()

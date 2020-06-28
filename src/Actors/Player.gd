@@ -29,6 +29,7 @@ var debuffed = false;
 var turn_buffer = [false, false, false, false, false, false, false, false, false, false]
 
 
+
 func _ready():
 	# Static types are necessary here to avoid warnings.
 	var camera: Camera2D = $Camera
@@ -39,7 +40,11 @@ func _ready():
 		viewport.world_2d = ($"../.." as Viewport).world_2d
 		camera.custom_viewport = viewport
 	Score.connect("hp_zero", self, "die")
+	Global.connect("you_win", self, "win")
 
+
+func win():
+	freeze = true
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
@@ -183,6 +188,10 @@ func die():
 	freeze = true
 	dash = false
 	$AnimationPlayer.stop(true)
+	Score.save_hi_score()
+	Score.reset_score()
+	Score.freeze_score(true)
+	GameTimer.stop_counting()
 	sprite.offset = DEATH_ANIM_OFFSET
 	Global.cut_music()
 	$Death.play()

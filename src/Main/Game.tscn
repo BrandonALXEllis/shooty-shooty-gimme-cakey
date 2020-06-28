@@ -17,9 +17,5 @@ layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
 visible = false
-margin_left = -36.4847
-margin_top = 58.3347
-margin_right = -36.4847
-margin_bottom = 58.3347
 
 [node name="ScoreUI" parent="InterfaceLayer" instance=ExtResource( 5 )]

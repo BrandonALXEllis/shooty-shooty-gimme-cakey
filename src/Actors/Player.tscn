@@ -69,7 +69,7 @@ tracks/0/keys = {
 "values": [ 26 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=13]
 resource_name = "hurty"
 length = 2.0
 tracks/0/type = "value"
@@ -85,7 +85,7 @@ tracks/0/keys = {
 "values": [ true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=14]
 length = 7.0
 loop = true
 step = 0.25
@@ -102,7 +102,7 @@ tracks/0/keys = {
 "values": [ 16, 17, 18, 16, 19, 20, 19, 16 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=15]
 length = 0.5
 loop = true
 step = 0.25
@@ -119,7 +119,7 @@ tracks/0/keys = {
 "values": [ 25 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=16]
 length = 0.5
 loop = true
 step = 0.25
@@ -136,7 +136,7 @@ tracks/0/keys = {
 "values": [ 23, 24, 23 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=17]
 length = 0.5
 loop = true
 step = 0.25
@@ -153,7 +153,7 @@ tracks/0/keys = {
 "values": [ 26 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=18]
 length = 1.25
 loop = true
 step = 0.25
@@ -170,7 +170,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=19]
 length = 1.25
 loop = true
 step = 0.25
@@ -187,7 +187,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 8, 9, 5 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=20]
 length = 1.25
 loop = true
 step = 0.25
@@ -245,6 +245,7 @@ position = Vector2( 0, -14 )
 z_index = 1
 frames = ExtResource( 2 )
 animation = "walk"
+frame = 1
 playing = true
 offset = Vector2( 8, -2 )
 
@@ -300,14 +301,14 @@ playback_speed = 2.6
 anims/crouch = SubResource( 1 )
 anims/falling = SubResource( 2 )
 anims/falling_weapon = SubResource( 3 )
-anims/hurty = SubResource( 4 )
-anims/idle = SubResource( 5 )
-anims/idle_weapon = SubResource( 6 )
-anims/jumping = SubResource( 7 )
-anims/jumping_weapon = SubResource( 8 )
-anims/run = SubResource( 9 )
-anims/run_weapon = SubResource( 10 )
-anims/standing_weapon_ready = SubResource( 11 )
+anims/hurty = SubResource( 13 )
+anims/idle = SubResource( 14 )
+anims/idle_weapon = SubResource( 15 )
+anims/jumping = SubResource( 16 )
+anims/jumping_weapon = SubResource( 17 )
+anims/run = SubResource( 18 )
+anims/run_weapon = SubResource( 19 )
+anims/standing_weapon_ready = SubResource( 20 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 0, -28 )
