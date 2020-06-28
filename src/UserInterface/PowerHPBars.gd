@@ -11,13 +11,13 @@ func _ready():
 	$HBoxContainer/Power.tint_progress = Color.lightskyblue
 	
 func update_hp():
-	$HBoxContainer/Hp/Hp2.value = Score.hp_percentage
+	$HBoxContainer/Hp/Hp2.value = Score.get_hp_percentage()
 	
 	#Change animation
 	$HBoxContainer/Hp/AnimationPlayer.stop(true)
 	var anim:Animation = 	$HBoxContainer/Hp/AnimationPlayer.get_animation("Change")
 	anim.track_set_key_value( 0, 0,  $HBoxContainer/Hp.value)
-	anim.track_set_key_value( 0, 1,  Score.hp_percentage)
+	anim.track_set_key_value( 0, 1,  Score.get_hp_percentage())
 	$HBoxContainer/Hp/AnimationPlayer.play("Change")
 
 func update_power():

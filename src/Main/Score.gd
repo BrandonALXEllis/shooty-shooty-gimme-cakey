@@ -9,13 +9,14 @@ var damage_multiplier = 1.0
 var score = 0
 var damage_multiplier_ratio = 0.0
 var level_points = 0
-var hp = 100.0
+var hp = 10.0
 
 signal combo_increased
 signal combo_force_reset
 signal score_increased
 signal level_changed
 signal hp_changed
+signal hp_zero
 
 const level_stages = {
 	"3": 1,
@@ -27,6 +28,8 @@ const level_stages = {
 func increment_hp(amount):
 	hp += amount
 	emit_signal("hp_changed")
+	if hp <= 0:
+		emit_signal("hp_zero")
 
 func get_hp_percentage():
 	return hp/MAX_HP

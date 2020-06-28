@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/MC/mc_frames.tres" type="SpriteFrames" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://src/Actors/DashSpawn.gd" type="Script" id=10]
 [ext_resource path="res://src/Actors/GhostSpawn.gd" type="Script" id=11]
 [ext_resource path="res://assets/audio/sfx/dash.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/audio/sfx/hurt.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/audio/sfx/death.wav" type="AudioStream" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "crouch"
@@ -67,7 +69,7 @@ tracks/0/keys = {
 "values": [ 26 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=4]
 resource_name = "hurty"
 length = 2.0
 tracks/0/type = "value"
@@ -83,7 +85,7 @@ tracks/0/keys = {
 "values": [ true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 7.0
 loop = true
 step = 0.25
@@ -100,7 +102,7 @@ tracks/0/keys = {
 "values": [ 16, 17, 18, 16, 19, 20, 19, 16 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.5
 loop = true
 step = 0.25
@@ -117,7 +119,7 @@ tracks/0/keys = {
 "values": [ 25 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.5
 loop = true
 step = 0.25
@@ -134,7 +136,7 @@ tracks/0/keys = {
 "values": [ 23, 24, 23 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.5
 loop = true
 step = 0.25
@@ -151,7 +153,7 @@ tracks/0/keys = {
 "values": [ 26 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 1.25
 loop = true
 step = 0.25
@@ -168,7 +170,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 0 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 length = 1.25
 loop = true
 step = 0.25
@@ -185,7 +187,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 8, 9, 5 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 1.25
 loop = true
 step = 0.25
@@ -202,7 +204,7 @@ tracks/0/keys = {
 "values": [ 10, 11, 12, 13, 14, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 10, 14 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -242,7 +244,7 @@ script = ExtResource( 11 )
 position = Vector2( 0, -14 )
 z_index = 1
 frames = ExtResource( 2 )
-animation = "shoot"
+animation = "walk"
 playing = true
 offset = Vector2( 8, -2 )
 
@@ -298,14 +300,14 @@ playback_speed = 2.6
 anims/crouch = SubResource( 1 )
 anims/falling = SubResource( 2 )
 anims/falling_weapon = SubResource( 3 )
-anims/hurty = SubResource( 12 )
-anims/idle = SubResource( 4 )
-anims/idle_weapon = SubResource( 5 )
-anims/jumping = SubResource( 6 )
-anims/jumping_weapon = SubResource( 7 )
-anims/run = SubResource( 8 )
-anims/run_weapon = SubResource( 9 )
-anims/standing_weapon_ready = SubResource( 10 )
+anims/hurty = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/idle_weapon = SubResource( 6 )
+anims/jumping = SubResource( 7 )
+anims/jumping_weapon = SubResource( 8 )
+anims/run = SubResource( 9 )
+anims/run_weapon = SubResource( 10 )
+anims/standing_weapon_ready = SubResource( 11 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 0, -28 )
@@ -315,10 +317,16 @@ limit_bottom = 20000000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -14 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 0
