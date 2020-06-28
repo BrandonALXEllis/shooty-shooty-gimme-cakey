@@ -4,7 +4,7 @@
 [ext_resource path="res://src/Level/ParallaxBackground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Level/Music.gd" type="Script" id=4]
-[ext_resource path="res://assets/audio/music/1BITTopDownMusics - Track 01 (1BIT Adventure).wav" type="AudioStream" id=5]
+[ext_resource path="res://Demons_in_my_party.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/Da boss/laser2.png" type="Texture" id=6]
 [ext_resource path="res://assets/theme/art/enemy/enemy.png" type="Texture" id=7]
 [ext_resource path="res://src/UserInterface/HealthDisplay.tscn" type="PackedScene" id=8]
@@ -600,6 +600,11 @@ animations = [ {
 "name": "start",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 13 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "laser",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
 "loop": false,
 "name": "deploy",
@@ -613,11 +618,6 @@ animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 16 ) ],
 "loop": false,
 "name": "twitch",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "laser",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 19 ) ],
@@ -793,6 +793,7 @@ tracks/1/keys = {
 
 [node name="BossLevel" type="Node2D"]
 pause_mode = 1
+position = Vector2( 0, -40 )
 script = SubResource( 1 )
 
 [node name="Enemies" type="Node" parent="."]
@@ -801,6 +802,7 @@ script = SubResource( 1 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+pitch_scale = 0.48
 autoplay = true
 script = ExtResource( 4 )
 
@@ -840,7 +842,8 @@ script = ExtResource( 32 )
 __meta__ = {
 "_edit_group_": true
 }
-max_health = 5
+max_health = 50000
+score_destroy_bonus = 100000
 enemy_scene_1 = ExtResource( 34 )
 enemy_scene_2 = ExtResource( 33 )
 
@@ -879,7 +882,7 @@ visible = false
 show_behind_parent = true
 position = Vector2( 0, 150 )
 frames = SubResource( 18 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="DamageBox" type="Area2D" parent="Enemy/AnimatedSprite/laser"]
