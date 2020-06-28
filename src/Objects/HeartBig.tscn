@@ -4,7 +4,7 @@
 [ext_resource path="res://src/Objects/Heart.gd" type="Script" id=2]
 [ext_resource path="res://assets/theme/art/Health/heart1.png" type="Texture" id=3]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "picked"
 length = 1.5
 step = 0.25
@@ -15,7 +15,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1 ),
+"times": PoolRealArray( 1.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -71,7 +71,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -42 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 length = 1.5
 loop = true
 step = 0.25
@@ -101,8 +101,8 @@ health = 100
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spinning"
 playback_speed = 1.5
-anims/picked = SubResource( 4 )
-anims/spinning = SubResource( 5 )
+anims/picked = SubResource( 1 )
+anims/spinning = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
