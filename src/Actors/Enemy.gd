@@ -21,6 +21,9 @@ var flying = false;
 var saved_velocity_x = 0
 var last_dir = 1
 var saved_velocity = Vector2(0,0)
+var idle_anim_time = 0
+var changed_hit_color = 0;
+var changed_hit_color_max = 3;
 
 var _state = State.WALKING
 
@@ -67,7 +70,11 @@ func _physics_process(_delta):
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 
 	# We flip the Sprite depending on which way the enemy is moving.
-	if !does_jump:
+	if does_fly:
+		if !!player && !flying:
+			#sprite.scale.x = -sign(position.direction_to(player.position).x)
+			pass
+	elif !does_jump:
 		sprite.scale.x = -1 if _velocity.x > 0 else 1
 	else:
 		pass
@@ -75,8 +82,17 @@ func _physics_process(_delta):
 
 	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
+		if animation_player.current_animation == 'idle':
+			idle_anim_time = animation_player.current_animation_position
 		animation_player.play(animation)
-
+		if animation == 'idle':
+			animation_player.seek(idle_anim_time)
+		
+func _process(delta):
+	if changed_hit_color:
+		changed_hit_color += 1
+		if changed_hit_color > changed_hit_color_max:
+			modulate = Color.white
 
 # This function calculates a new velocity whenever you need it.
 # If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
@@ -144,6 +160,8 @@ func calculate_move_velocity(linear_velocity):
 func damage(amount):
 	health -= amount
 	healthbar.update_healthbar(health)
+	modulate= Color.yellow
+	changed_hit_color = 1
 	$Hit.play()
 	if health <=0:
 		self.destroy()
@@ -183,15 +201,16 @@ func _on_DetectRadius_body_exited(body):
 
 func _on_FlyTimer_timeout():	
 	if flying:
-		$FlyTimer.wait_time = .3
+		$FlyTimer.start(.3)
 		if !player:
 			$FlyTimer.stop()
 	
 	#If done flying, stop.
 	elif !flying:
-		$FlyTimer.wait_time = 1
+		$FlyTimer.start(1)
 		#determine new velocity to fly in
 		if player && does_chase:
+			sprite.scale.x = -sign(position.direction_to(player.position).x)
 			saved_velocity = position.direction_to(player.position + Vector2(0,-20)) * chase_speed*speed
 		else:
 			saved_velocity = Vector2(0,0)

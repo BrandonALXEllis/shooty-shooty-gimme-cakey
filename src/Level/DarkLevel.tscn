@@ -270,7 +270,7 @@ autoplay = true
 script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 13 )]
-position = Vector2( 661.638, 504.958 )
+position = Vector2( 656.487, 499.592 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 24.7384, 27.3553 )
@@ -288,4 +288,8 @@ position = Vector2( 795.431, 415.279 )
 position = Vector2( 904.357, 484.857 )
 
 [node name="PresentEnemy" parent="." instance=ExtResource( 12 )]
-position = Vector2( 544.504, 344.714 )
+position = Vector2( 855.848, 413.569 )
+
+[node name="PresentEnemy2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 855.249, 480.628 )
+does_move = true

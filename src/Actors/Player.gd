@@ -20,7 +20,7 @@ onready var ghost_spawn = $GhostSpawn
 
 var dash = false
 var last_horizontal_direction = 1
-
+var debuffed = false;
 
 func _ready():
 	# Static types are necessary here to avoid warnings.
@@ -149,3 +149,15 @@ func _on_GhostSpacing_timeout():
 func increment_health(amount):
 	print("Added health ", amount)
 	#TODO: add the health to the health bar
+
+func damage(amount):
+	if !debuffed:
+		#TODO: damage here
+		debuffed = true
+		print("owie", amount)
+		$DebuffTimer.start()
+		$AnimationPlayer.play("hurty")
+
+
+func _on_DebuffTimer_timeout():
+	debuffed = false;
