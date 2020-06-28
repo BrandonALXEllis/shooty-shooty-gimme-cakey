@@ -31,6 +31,8 @@ func update_level():
 		if level > current_level:
 			var particles = LevelParticles.instance()
 			$HBoxContainer2/Level/Position2D.add_child(particles)
+			$HBoxContainer/Power/LevelUp.stop()
+			$HBoxContainer/Power/LevelUp.play()
 		if level == 5:
 			$HBoxContainer/Power/AnimationPlayer.play("Activate")
 			$HBoxContainer2/Level.modulate = Color.lightskyblue

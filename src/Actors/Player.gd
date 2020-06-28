@@ -56,6 +56,10 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		$Jump.stop()
+		$Jump.play()
+		
 	var direction = get_direction()
 
 	var is_jump_interrupted = Input.is_action_just_released("jump" + action_suffix) and _velocity.y < 0.0

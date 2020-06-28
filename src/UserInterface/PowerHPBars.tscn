@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/fonts/dogica/OTF/dogicapixel.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/dogica_bold/OTF/dogicapixelbold.otf" type="DynamicFontData" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/UI/health_bar_over.png" type="Texture" id=5]
 [ext_resource path="res://assets/UI/health_bar_top.png" type="Texture" id=6]
 [ext_resource path="res://src/UserInterface/PowerHPBars.gd" type="Script" id=7]
+[ext_resource path="res://assets/audio/sfx/gain_experience.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/sfx/level_up.wav" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 8
@@ -148,7 +150,6 @@ texture_under = ExtResource( 4 )
 texture_over = ExtResource( 5 )
 texture_progress = ExtResource( 3 )
 fill_mode = 3
-tint_progress = Color( 0.783006, 0.771242, 1, 1 )
 nine_patch_stretch = true
 stretch_margin_left = 1
 stretch_margin_top = 1
@@ -160,3 +161,9 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/Power"]
 anims/Activate = SubResource( 3 )
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="HBoxContainer/Power"]
+stream = ExtResource( 9 )
+
+[node name="GainExperience" type="AudioStreamPlayer" parent="HBoxContainer/Power"]
+stream = ExtResource( 8 )

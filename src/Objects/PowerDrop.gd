@@ -3,6 +3,7 @@ class_name PowerDrop
 
 var target:Player
 const SPEED = 5
+const ExperienceSFX = preload("res://src/Objects/ExperienceSFX.tscn")
 
 func _ready():
 	target = get_tree().get_nodes_in_group("player")[0]
@@ -18,4 +19,8 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body):
 	if body == target:
 		Score.increment_level_points()
+		var sfx = ExperienceSFX.instance()
+		body.call_deferred("add_child", sfx)
 		queue_free()
+		
+		
