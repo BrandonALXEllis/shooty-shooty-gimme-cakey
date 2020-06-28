@@ -11,7 +11,7 @@ export(bool) var does_move = true
 export(bool) var does_jump = false
 export(bool) var does_fly = false
 export(bool) var does_chase = true
-export(int) var max_health  = 1000
+export(int) var max_health  = 10
 export(float) var chase_speed = 1
 export(float) var jump_speed = 1.5
 export(float) var seek_radius = 100
@@ -149,7 +149,9 @@ func cooler_physics_process(_delta):
 	pass
 
 func destroy():
-	.destroy()
+	_state = State.DEAD
+	_velocity = Vector2.ZERO
+	drop_powerups()
 	.get_parent().get_node('AnimationPlayer').play('destroyed')
 
 
