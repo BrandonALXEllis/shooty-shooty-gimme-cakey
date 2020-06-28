@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/Actor.gd"
 }, {
+"base": "Actor",
+"class": "BossEnemy",
+"language": "GDScript",
+"path": "res://src/Level/BossEnemy.gd"
+}, {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -29,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Actors/DashSpawn.gd"
 }, {
-"base": "Actor",
+"base": "Reference",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/Actors/Enemy.gd"
@@ -81,6 +86,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"BossEnemy": "",
 "Bullet": "",
 "Coin": "",
 "DashSpawn": "",

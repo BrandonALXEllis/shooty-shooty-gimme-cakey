@@ -52,6 +52,7 @@ func _ready():
 	healthbar.init(health, max_health)
 	if (does_jump):
 		jump_timer.start()
+	
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.

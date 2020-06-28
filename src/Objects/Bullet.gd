@@ -12,7 +12,7 @@ func destroy():
 
 
 func _on_body_entered(body):
-	if body is Enemy:
+	if body.is_in_group("enemy"):
 		body._velocity = Vector2(0,0)
 		body.damage(damage*Score.damage_multiplier)
 		Score.increment_combo()

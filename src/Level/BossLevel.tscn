@@ -600,19 +600,14 @@ animations = [ {
 "name": "start",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "laser",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
 "loop": false,
 "name": "deploy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
-"name": "fake",
+"name": "moving",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 16 ) ],
@@ -620,9 +615,14 @@ animations = [ {
 "name": "twitch",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "moving",
+"name": "fake",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 21 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "laser",
 "speed": 5.0
 } ]
 
@@ -834,6 +834,7 @@ anims/top_swipe_rl = SubResource( 11 )
 
 [node name="Enemy" type="KinematicBody2D" parent="." groups=[
 "boss",
+"enemy",
 ]]
 position = Vector2( 70.5149, 580.344 )
 collision_layer = 1024
@@ -882,7 +883,6 @@ visible = false
 show_behind_parent = true
 position = Vector2( 0, 150 )
 frames = SubResource( 18 )
-frame = 2
 playing = true
 
 [node name="DamageBox" type="Area2D" parent="Enemy/AnimatedSprite/laser"]
@@ -975,13 +975,12 @@ update_scale = false
 curve = SubResource( 26 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="startup"]
-position = Vector2( 248, 560 )
-rotation = -1.57079
-offset = 87.9531
+position = Vector2( 248, 603.992 )
+rotation = -1.5708
+offset = 43.9765
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="startup/PathFollow2D"]
 remote_path = NodePath("../../../Enemy")
-update_position = false
 update_rotation = false
 update_scale = false
 

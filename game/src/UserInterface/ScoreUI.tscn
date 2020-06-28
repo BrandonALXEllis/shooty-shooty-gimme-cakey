@@ -1,0 +1,272 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/UserInterface/PowerHPBars.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/fonts/dogica_bold/OTF/dogicabold.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/UserInterface/ScoreCounter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UserInterface/ComboCounter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UserInterface/GameOver.gd" type="Script" id=5]
+[ext_resource path="res://assets/fonts/dogica/OTF/dogicapixel.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://src/UserInterface/Timer.gd" type="Script" id=7]
+[ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=8]
+[ext_resource path="res://src/UserInterface/EndMenu.gd" type="Script" id=9]
+[ext_resource path="res://src/UserInterface/YouWin.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=3]
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Activate"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 6 )
+
+[node name="ScoreUI" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 5
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node" type="Control" parent="."]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 950.0
+margin_bottom = 530.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComboCounter" parent="Node" instance=ExtResource( 4 )]
+
+[node name="ScoreCounter" parent="Node" instance=ExtResource( 3 )]
+
+[node name="Timer" type="HBoxContainer" parent="Node"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -126.0
+margin_bottom = 13.0
+alignment = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Node/Timer"]
+margin_left = 61.0
+margin_top = 3.0
+margin_right = 91.0
+margin_bottom = 9.0
+custom_fonts/font = SubResource( 1 )
+text = "TIME:"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Node/Timer"]
+margin_left = 95.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 9.0
+custom_fonts/font = SubResource( 1 )
+text = "00:00"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerHPBars" parent="Node" instance=ExtResource( 1 )]
+
+[node name="GameOver" type="Label" parent="Node"]
+visible = false
+anchor_right = 1.0
+margin_top = 31.0249
+margin_bottom = 45.0249
+custom_fonts/font = SubResource( 2 )
+text = "GAME OVER"
+align = 1
+percent_visible = 0.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node/GameOver"]
+anims/Activate = SubResource( 3 )
+
+[node name="EndMenu" type="Control" parent="Node/GameOver"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 75.8305
+margin_bottom = 75.8305
+theme = ExtResource( 8 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Node/GameOver/EndMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.211765 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node/GameOver/EndMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.0
+margin_top = -125.0
+margin_right = 87.0
+margin_bottom = 126.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="Node/GameOver/EndMenu/VBoxContainer"]
+margin_top = 83.0
+margin_right = 174.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 0, 40 )
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="Node/GameOver/EndMenu/VBoxContainer"]
+margin_top = 127.0
+margin_right = 174.0
+margin_bottom = 167.0
+rect_min_size = Vector2( 0, 40 )
+text = "QUIT"
+
+[node name="YouWin" type="Label" parent="Node"]
+anchor_right = 1.0
+margin_top = 31.0249
+margin_bottom = 45.0249
+custom_fonts/font = SubResource( 2 )
+text = "YOU WIN!!!"
+align = 1
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node/YouWin"]
+anims/Activate = SubResource( 4 )
+
+[node name="EndMenu" type="Control" parent="Node/YouWin"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 49.9837
+margin_bottom = 49.9837
+theme = ExtResource( 8 )
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Node/YouWin/EndMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.211765 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node/YouWin/EndMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.0
+margin_top = -64.0001
+margin_right = 87.0
+margin_bottom = 187.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="Node/YouWin/EndMenu/VBoxContainer"]
+margin_top = 83.0
+margin_right = 174.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 0, 40 )
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="Node/YouWin/EndMenu/VBoxContainer"]
+margin_top = 127.0
+margin_right = 174.0
+margin_bottom = 167.0
+rect_min_size = Vector2( 0, 40 )
+text = "QUIT"
+
+[node name="Label" type="Label" parent="Node/YouWin"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 12.1479
+margin_bottom = 26.1479
+grow_vertical = 0
+custom_fonts/font = SubResource( 5 )
+text = "TIME BONUS: 2.0X"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Node/YouWin"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 32.6302
+margin_bottom = 46.6302
+grow_vertical = 0
+custom_fonts/font = SubResource( 5 )
+text = "FINAL SCORE: 000000000000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Node/YouWin"]
+one_shot = true
+[connection signal="pressed" from="Node/GameOver/EndMenu/VBoxContainer/RestartButton" to="Node/GameOver/EndMenu" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Node/GameOver/EndMenu/VBoxContainer/QuitButton" to="Node/GameOver/EndMenu" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Node/YouWin/EndMenu/VBoxContainer/RestartButton" to="Node/YouWin/EndMenu" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Node/YouWin/EndMenu/VBoxContainer/QuitButton" to="Node/YouWin/EndMenu" method="_on_QuitButton_pressed"]

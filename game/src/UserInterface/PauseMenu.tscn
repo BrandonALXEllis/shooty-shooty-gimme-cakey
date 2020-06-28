@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=1]
+[ext_resource path="res://src/UserInterface/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/dogica/OTF/dogicapixel.otf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+extra_spacing_top = 2
+font_data = ExtResource( 3 )
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.211765 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -87.0
+margin_top = -125.0
+margin_right = 87.0
+margin_bottom = 126.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 53.0
+margin_right = 176.0
+margin_bottom = 65.0
+text = "GAME PAUSED"
+align = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+margin_top = 69.0
+margin_right = 176.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 0, 40 )
+text = "RESUME"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+margin_top = 113.0
+margin_right = 176.0
+margin_bottom = 153.0
+rect_min_size = Vector2( 0, 40 )
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 157.0
+margin_right = 176.0
+margin_bottom = 197.0
+rect_min_size = Vector2( 0, 40 )
+text = "QUIT"
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 94.4745
+margin_top = -61.3308
+margin_right = 94.4745
+margin_bottom = -9.33081
+grow_horizontal = 0
+grow_vertical = 0
+custom_fonts/font = SubResource( 1 )
+text = "Jump: W / Nintendo B / Xbox A / Dualshock Cross
+Shoot: Space / Nintendo Y / Xbox X / Dualshock Square
+Dash: Shift / Nintendo L / Xbox LB / Dualshock L1
+Accept: Enter / Nintendo A /  Xbox B / Dualshock Circle
+Movement: WASD / D-Pad / Left Joystick"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

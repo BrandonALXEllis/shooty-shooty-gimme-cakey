@@ -22,5 +22,3 @@ func _on_Area2D_body_entered(body):
 		var sfx = ExperienceSFX.instance()
 		body.call_deferred("add_child", sfx)
 		queue_free()
-		
-		

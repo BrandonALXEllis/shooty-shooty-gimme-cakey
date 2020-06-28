@@ -148,7 +148,9 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 6.95875, 1.47748, -6.95875, -1.47748, -8, -8, 0, 0, 0, 0, -16, 0, -3.66296, 0.486823, 3.66296, -0.486823, -8, 8, 0, 0, 0, 0, 0, 0, -8.32305, 2.21554, 8.32305, -2.21554, 8, -8, 0, 0, 0, 0, 16, 0, 3.74395, 4.03156, -3.74395, -4.03156, 8, 8, 0, 0, 0, 0, 0, 0 )
 }
 
-[node name="BatEnemy" type="KinematicBody2D"]
+[node name="BatEnemy" type="KinematicBody2D" groups=[
+"enemy",
+]]
 collision_layer = 1024
 collision_mask = 0
 script = ExtResource( 3 )

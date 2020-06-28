@@ -3,10 +3,10 @@
 [ext_resource path="res://assets/fonts/dogica/OTF/dogicapixel.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/Level/BossEntrance.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 30 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 1 )
 
 [node name="BossEntrance" type="Area2D"]
@@ -14,7 +14,7 @@ position = Vector2( -131.743, 493.722 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( -1.90262, 9.27524 )
@@ -25,7 +25,7 @@ margin_left = -26.6462
 margin_top = -68.2244
 margin_right = 29.3538
 margin_bottom = -54.2244
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "BOSS"
 __meta__ = {
 "_edit_use_anchors_": false
