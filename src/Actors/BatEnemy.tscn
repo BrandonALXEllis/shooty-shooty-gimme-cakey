@@ -1,10 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Actors/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Enemy/batframes.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://src/Actors/BatEnemy.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+radius = 112.641
 
 [node name="BatEnemy" instance=ExtResource( 1 )]
+collision_mask = 0
+script = ExtResource( 3 )
+speed = Vector2( 150, 350 )
+has_gravity = false
+does_fly = true
+chase_speed = 1.5
+seek_radius = 250.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="11"]
 position = Vector2( 0, -4 )
 frames = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="DetectRadius" index="0"]
+shape = SubResource( 1 )

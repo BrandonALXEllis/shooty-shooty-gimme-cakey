@@ -201,10 +201,11 @@ hue_variation = 0.05
 hue_variation_random = 0.46
 
 [sub_resource type="CircleShape2D" id=10]
+resource_local_to_scene = true
 radius = 112.641
 
 [node name="Enemy" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 24
 script = ExtResource( 5 )
 speed = Vector2( 75, 250 )
@@ -232,7 +233,7 @@ material = SubResource( 1 )
 texture = ExtResource( 4 )
 flip_h = true
 hframes = 8
-frame = 7
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/destroy = SubResource( 2 )
@@ -270,6 +271,9 @@ stream = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
 shape = SubResource( 10 )
+
+[node name="FlyTimer" type="Timer" parent="."]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="timeout" from="FlyTimer" to="." method="_on_FlyTimer_timeout"]

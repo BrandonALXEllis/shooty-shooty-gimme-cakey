@@ -9,13 +9,17 @@ enum State {
 
 export(bool) var does_move = true
 export(bool) var does_jump = false
+export(bool) var does_fly = false
 export(bool) var does_chase = true
 export(int) var max_health  = 1000
-export(float) var chase_speed = 1.5
+export(float) var chase_speed = 1
 export(float) var jump_speed = 1.5
+export(float) var seek_radius = 100
 var health = max_health
 var jumping = false;
+var flying = false;
 var saved_velocity_x = 0
+var saved_velocity = Vector2(0,0)
 
 var _state = State.WALKING
 
@@ -33,6 +37,8 @@ var player = null
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
+	$DetectRadius/CollisionShape2D.shape.radius = seek_radius
+	print($DetectRadius/CollisionShape2D.shape.radius)
 	_velocity.x = speed.x
 	healthbar.init(health, max_health)
 	if (does_jump):
@@ -73,8 +79,17 @@ func calculate_move_velocity(linear_velocity):
 	var velocity = linear_velocity
 			
 	# Follow player correctly
-	if player && does_chase && is_on_floor():
-		saved_velocity_x = (position.direction_to(player.position) * chase_speed*speed).x
+	if player && does_chase:
+		if does_jump:
+			if is_on_floor():
+				saved_velocity_x = (position.direction_to(player.position) * chase_speed*speed).x
+		elif does_fly:
+			if $FlyTimer.is_stopped():
+				flying = true
+				$FlyTimer.start()
+		else:
+			if is_on_floor():
+				velocity.x = (position.direction_to(player.position) * chase_speed*speed).x
 	
 	if does_jump:
 		if !jumping:
@@ -95,10 +110,20 @@ func calculate_move_velocity(linear_velocity):
 			else:
 				velocity.x = saved_velocity_x
 	else:
-		if not floor_detector_left.is_colliding():
-			velocity.x = speed.x
-		elif not floor_detector_right.is_colliding():
-			velocity.x = -speed.x
+		if does_fly:
+			# It should follow a figure 8 path until it sees the player
+			# If it does find the player, it should head towards it with constant
+			# velocity and direction.
+			#
+			if flying:
+				velocity = saved_velocity
+			else:
+				velocity = Vector2(0,0)
+		else:
+			if not floor_detector_left.is_colliding():
+				velocity.x = speed.x
+			elif not floor_detector_right.is_colliding():
+				velocity.x = -speed.x
 
 	if is_on_wall():
 		velocity.x *= -1
@@ -145,3 +170,21 @@ func _on_DetectRadius_body_exited(body):
 	if body == player:
 		player = null
 		_velocity.x = speed.x*sign(_velocity.x)
+
+
+func _on_FlyTimer_timeout():	
+	if flying:
+		$FlyTimer.wait_time = .3
+		if !player:
+			$FlyTimer.stop()
+	
+	#If done flying, stop.
+	elif !flying:
+		$FlyTimer.wait_time = 1
+		#determine new velocity to fly in
+		if player && does_chase:
+			saved_velocity = position.direction_to(player.position + Vector2(0,-20)) * chase_speed*speed
+		else:
+			saved_velocity = Vector2(0,0)
+			
+	flying = !flying

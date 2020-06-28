@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/theme/art/tileset/industrial_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://src/Actors/BatEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Platforms/Platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Level/ParallaxBackground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
@@ -9,7 +10,7 @@
 [ext_resource path="res://src/Objects/HeartBig.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/Level/Music.gd" type="Script" id=9]
 [ext_resource path="res://src/Objects/HeartSmall.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/Actors/CakeEnemy.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Actors/PresentEnemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=13]
 
 [sub_resource type="GDScript" id=1]
@@ -262,6 +263,18 @@ polygon = PoolVector2Array( -129.699, 9.94633, -47, -10.5, 8, -7, 10, -1.5, -46.
 
 [node name="Enemies" type="Node" parent="."]
 
+[node name="PresentEnemy" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 800.685, 564.102 )
+
+[node name="PresentEnemy2" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 801.173, 526.063 )
+
+[node name="PresentEnemy3" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 800.198, 488.512 )
+
+[node name="PresentEnemy4" parent="Enemies" instance=ExtResource( 12 )]
+position = Vector2( 800.198, 450.473 )
+
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -270,7 +283,7 @@ autoplay = true
 script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 13 )]
-position = Vector2( 90, 546 )
+position = Vector2( 676.15, 566.9 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -280,11 +293,12 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1638415, 0, 22, 1703951, 0, 22, 1769487, 0, 22, 1835023, 0, 22, 1900559, 0, 22, 1966086, 0, 18, 1966087, 0, 18, 1966088, 0, 18, 1966089, 0, 18, 1966095, 0, 22, 2031631, 0, 22, 2031641, 0, 5, 2031674, 0, 14, 2097166, 0, 18, 2097167, 0, 65555, 2097168, 0, 18, 2097169, 0, 14, 2097170, 0, 14, 2097171, 0, 14, 2097172, 0, 14, 2097173, 0, 14, 2097174, 0, 14, 2097177, 0, 5, 2097210, 0, 14, 2162688, 0, 18, 2162689, 0, 18, 2162690, 0, 18, 2162691, 0, 18, 2162692, 0, 18, 2162697, 0, 18, 2162698, 0, 18, 2162699, 0, 18, 2162700, 0, 18, 2162703, 0, 8, 2162713, 0, 5, 2162746, 0, 14, 2228239, 0, 8, 2228249, 0, 5, 2228282, 0, 14, 2293768, 0, 196631, 2293769, 0, 196633, 2293775, 0, 8, 2293785, 0, 5, 2293818, 0, 14, 2359304, 0, 17, 2359305, 0, 16, 2359307, 0, 14, 2359308, 0, 14, 2359309, 0, 14, 2359311, 0, 8, 2359321, 0, 5, 2359354, 0, 14, 2424840, 0, 17, 2424841, 0, 16, 2424843, 0, 19, 2424844, 0, 21, 2424845, 0, 19, 2424847, 0, 8, 2424849, 0, 65540, 2424850, 0, 65543, 2424851, 0, 18, 2424852, 0, 18, 2424853, 0, 18, 2424854, 0, 18, 2424857, 0, 18, 2424858, 0, 18, 2424859, 0, 18, 2424860, 0, 18, 2424861, 0, 18, 2424862, 0, 18, 2424863, 0, 18, 2424864, 0, 18, 2424865, 0, 18, 2424866, 0, 18, 2424867, 0, 18, 2424868, 0, 18, 2424869, 0, 14, 2424870, 0, 14, 2424871, 0, 14, 2424873, 0, 18, 2424874, 0, 18, 2424875, 0, 18, 2424876, 0, 18, 2424877, 0, 18, 2424878, 0, 18, 2424879, 0, 18, 2424880, 0, 18, 2424881, 0, 18, 2424882, 0, 18, 2424883, 0, 18, 2424884, 0, 18, 2424885, 0, 18, 2424886, 0, 18, 2424887, 0, 18, 2424888, 0, 18, 2424889, 0, 18, 2424890, 0, 18, 2424891, 0, 18, 2424892, 0, 18, 2424893, 0, 18, 2424894, 0, 18, 2424895, 0, 18, 2424896, 0, 18, 2424897, 0, 18, 2424898, 0, 18, 2424899, 0, 18, 2424900, 0, 18, 2424901, 0, 18, 2424902, 0, 18, 2424903, 0, 18, 2424904, 0, 18, 2424905, 0, 18, 2424906, 0, 18, 2424907, 0, 18, 2424908, 0, 18, 2424909, 0, 18, 2424910, 0, 18, 2424911, 0, 18, 2424912, 0, 18, 2424913, 0, 18, 2490372, 0, 65546, 2490373, 0, 65544, 2490374, 0, 65545, 2490375, 0, 65546, 2490376, 0, 65547, 2490377, 0, 14, 2490378, 0, 14, 2490379, 0, 21, 2490380, 0, 19, 2490381, 0, 21, 2490383, 0, 8, 2490412, 0, 18, 2490413, 0, 18, 2490414, 0, 18, 2490415, 0, 18, 2490416, 0, 18, 2490417, 0, 18, 2490424, 0, 18 )
 
+[node name="BatEnemy" parent="TileMap" instance=ExtResource( 2 )]
+position = Vector2( 273.541, 419.193 )
+collision_layer = 2
+
 [node name="HeartBig" parent="." instance=ExtResource( 8 )]
 position = Vector2( 753.641, 564.961 )
 
 [node name="HeartSmall" parent="." instance=ExtResource( 10 )]
 position = Vector2( 708.967, 581.021 )
-
-[node name="CakeEnemy" parent="." instance=ExtResource( 11 )]
-position = Vector2( 546.195, 570.714 )
